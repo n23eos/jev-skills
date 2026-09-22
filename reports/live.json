@@ -1,0 +1,1981 @@
+{
+  "mode": "live_synthetic",
+  "generated_at_utc": "2026-09-22T11:36:12.132160+00:00",
+  "model_version": "jev-1.13.0",
+  "per_case_timeout_seconds": 12.0,
+  "label_note": "Author-assigned synthetic expectations; no labels changed after results.",
+  "cases": [
+    {
+      "id": "model-01",
+      "workflow": "model",
+      "expected": "tier-tiny",
+      "observed": "tier-tiny",
+      "match": true,
+      "input": {
+        "request": "Fix a single typo in a comment.",
+        "context": {
+          "fixture": "fictional capabilities only"
+        },
+        "candidates": [
+          {
+            "id": "tier-tiny",
+            "size": "tiny",
+            "description": "Synthetic lowest-cost model: short routine text edits only."
+          },
+          {
+            "id": "tier-everyday",
+            "size": "everyday",
+            "description": "Synthetic standard coding model: isolated changes and common unit tests."
+          },
+          {
+            "id": "tier-large",
+            "size": "large",
+            "description": "Synthetic advanced coding model: coupled components and complex debugging."
+          },
+          {
+            "id": "tier-hardest",
+            "size": "hardest",
+            "description": "Synthetic strongest model: risky design or ambiguous safety decisions."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "tier-tiny": "Synthetic lowest-cost model: short routine text edits only.",
+            "tier-everyday": "Synthetic standard coding model: isolated changes and common unit tests.",
+            "tier-large": "Synthetic advanced coding model: coupled components and complex debugging.",
+            "tier-hardest": "Synthetic strongest model: risky design or ambiguous safety decisions.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999927625060081
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "tier-tiny",
+        "confidence": 0.8,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 497,
+          "output_tokens": 63
+        },
+        "elapsed_ms": 776,
+        "workflow": "model",
+        "model_size": "tiny",
+        "judgments": [
+          {
+            "selected": "tier-tiny",
+            "confidence": 0.8,
+            "probabilities": {
+              "tier-large": 0.0,
+              "none": 0.15,
+              "tier-everyday": 0.01,
+              "tier-tiny": 0.84,
+              "tier-hardest": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 497,
+              "output_tokens": 63
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.0874e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "model-02",
+      "workflow": "model",
+      "expected": "tier-tiny",
+      "observed": null,
+      "match": false,
+      "input": {
+        "request": "Summarize filenames from a supplied short list.",
+        "context": {
+          "fixture": "fictional capabilities only"
+        },
+        "candidates": [
+          {
+            "id": "tier-tiny",
+            "size": "tiny",
+            "description": "Synthetic lowest-cost model: short routine text edits only."
+          },
+          {
+            "id": "tier-everyday",
+            "size": "everyday",
+            "description": "Synthetic standard coding model: isolated changes and common unit tests."
+          },
+          {
+            "id": "tier-large",
+            "size": "large",
+            "description": "Synthetic advanced coding model: coupled components and complex debugging."
+          },
+          {
+            "id": "tier-hardest",
+            "size": "hardest",
+            "description": "Synthetic strongest model: risky design or ambiguous safety decisions."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "tier-tiny": "Synthetic lowest-cost model: short routine text edits only.",
+            "tier-everyday": "Synthetic standard coding model: isolated changes and common unit tests.",
+            "tier-large": "Synthetic advanced coding model: coupled components and complex debugging.",
+            "tier-hardest": "Synthetic strongest model: risky design or ambiguous safety decisions.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999935749918222
+        }
+      ],
+      "result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": 0.59,
+        "reason": "low_confidence",
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 499,
+          "output_tokens": 63
+        },
+        "elapsed_ms": 652,
+        "workflow": "model",
+        "judgments": [
+          {
+            "selected": "tier-tiny",
+            "confidence": 0.59,
+            "probabilities": {
+              "tier-everyday": 0.01,
+              "tier-hardest": 0.0,
+              "tier-large": 0.0,
+              "none": 0.31,
+              "tier-tiny": 0.68
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 499,
+              "output_tokens": 63
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.0958e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "model-03",
+      "workflow": "model",
+      "expected": "tier-everyday",
+      "observed": "tier-everyday",
+      "match": true,
+      "input": {
+        "request": "Add a bounded parsing helper with unit tests.",
+        "context": {
+          "fixture": "fictional capabilities only"
+        },
+        "candidates": [
+          {
+            "id": "tier-tiny",
+            "size": "tiny",
+            "description": "Synthetic lowest-cost model: short routine text edits only."
+          },
+          {
+            "id": "tier-everyday",
+            "size": "everyday",
+            "description": "Synthetic standard coding model: isolated changes and common unit tests."
+          },
+          {
+            "id": "tier-large",
+            "size": "large",
+            "description": "Synthetic advanced coding model: coupled components and complex debugging."
+          },
+          {
+            "id": "tier-hardest",
+            "size": "hardest",
+            "description": "Synthetic strongest model: risky design or ambiguous safety decisions."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "tier-tiny": "Synthetic lowest-cost model: short routine text edits only.",
+            "tier-everyday": "Synthetic standard coding model: isolated changes and common unit tests.",
+            "tier-large": "Synthetic advanced coding model: coupled components and complex debugging.",
+            "tier-hardest": "Synthetic strongest model: risky design or ambiguous safety decisions.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999882041011006
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "tier-everyday",
+        "confidence": 0.85,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 498,
+          "output_tokens": 64
+        },
+        "elapsed_ms": 700,
+        "workflow": "model",
+        "model_size": "everyday",
+        "judgments": [
+          {
+            "selected": "tier-everyday",
+            "confidence": 0.85,
+            "probabilities": {
+              "tier-everyday": 0.89,
+              "none": 0.11,
+              "tier-hardest": 0.0,
+              "tier-large": 0.0,
+              "tier-tiny": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 498,
+              "output_tokens": 64
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.0916e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "model-04",
+      "workflow": "model",
+      "expected": "tier-everyday",
+      "observed": "tier-everyday",
+      "match": true,
+      "input": {
+        "request": "Repair a known single-module validation bug.",
+        "context": {
+          "fixture": "fictional capabilities only"
+        },
+        "candidates": [
+          {
+            "id": "tier-tiny",
+            "size": "tiny",
+            "description": "Synthetic lowest-cost model: short routine text edits only."
+          },
+          {
+            "id": "tier-everyday",
+            "size": "everyday",
+            "description": "Synthetic standard coding model: isolated changes and common unit tests."
+          },
+          {
+            "id": "tier-large",
+            "size": "large",
+            "description": "Synthetic advanced coding model: coupled components and complex debugging."
+          },
+          {
+            "id": "tier-hardest",
+            "size": "hardest",
+            "description": "Synthetic strongest model: risky design or ambiguous safety decisions."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "tier-tiny": "Synthetic lowest-cost model: short routine text edits only.",
+            "tier-everyday": "Synthetic standard coding model: isolated changes and common unit tests.",
+            "tier-large": "Synthetic advanced coding model: coupled components and complex debugging.",
+            "tier-hardest": "Synthetic strongest model: risky design or ambiguous safety decisions.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999910666025244
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "tier-everyday",
+        "confidence": 0.62,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 497,
+          "output_tokens": 64
+        },
+        "elapsed_ms": 658,
+        "workflow": "model",
+        "model_size": "everyday",
+        "judgments": [
+          {
+            "selected": "tier-everyday",
+            "confidence": 0.62,
+            "probabilities": {
+              "tier-everyday": 0.69,
+              "tier-large": 0.0,
+              "none": 0.29,
+              "tier-tiny": 0.02,
+              "tier-hardest": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 497,
+              "output_tokens": 64
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.0874e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "model-05",
+      "workflow": "model",
+      "expected": "tier-large",
+      "observed": null,
+      "match": false,
+      "input": {
+        "request": "Diagnose a failure crossing a cache and queue.",
+        "context": {
+          "fixture": "fictional capabilities only"
+        },
+        "candidates": [
+          {
+            "id": "tier-tiny",
+            "size": "tiny",
+            "description": "Synthetic lowest-cost model: short routine text edits only."
+          },
+          {
+            "id": "tier-everyday",
+            "size": "everyday",
+            "description": "Synthetic standard coding model: isolated changes and common unit tests."
+          },
+          {
+            "id": "tier-large",
+            "size": "large",
+            "description": "Synthetic advanced coding model: coupled components and complex debugging."
+          },
+          {
+            "id": "tier-hardest",
+            "size": "hardest",
+            "description": "Synthetic strongest model: risky design or ambiguous safety decisions."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "tier-tiny": "Synthetic lowest-cost model: short routine text edits only.",
+            "tier-everyday": "Synthetic standard coding model: isolated changes and common unit tests.",
+            "tier-large": "Synthetic advanced coding model: coupled components and complex debugging.",
+            "tier-hardest": "Synthetic strongest model: risky design or ambiguous safety decisions.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.997138375067152
+        }
+      ],
+      "result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": 0.5,
+        "reason": "low_confidence",
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 500,
+          "output_tokens": 62
+        },
+        "elapsed_ms": 721,
+        "workflow": "model",
+        "judgments": [
+          {
+            "selected": "tier-large",
+            "confidence": 0.5,
+            "probabilities": {
+              "none": 0.38,
+              "tier-tiny": 0.0,
+              "tier-hardest": 0.0,
+              "tier-large": 0.61,
+              "tier-everyday": 0.01
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 500,
+              "output_tokens": 62
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.1e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "model-06",
+      "workflow": "model",
+      "expected": "tier-large",
+      "observed": null,
+      "match": false,
+      "input": {
+        "request": "Refactor three related modules while preserving behavior.",
+        "context": {
+          "fixture": "fictional capabilities only"
+        },
+        "candidates": [
+          {
+            "id": "tier-tiny",
+            "size": "tiny",
+            "description": "Synthetic lowest-cost model: short routine text edits only."
+          },
+          {
+            "id": "tier-everyday",
+            "size": "everyday",
+            "description": "Synthetic standard coding model: isolated changes and common unit tests."
+          },
+          {
+            "id": "tier-large",
+            "size": "large",
+            "description": "Synthetic advanced coding model: coupled components and complex debugging."
+          },
+          {
+            "id": "tier-hardest",
+            "size": "hardest",
+            "description": "Synthetic strongest model: risky design or ambiguous safety decisions."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "tier-tiny": "Synthetic lowest-cost model: short routine text edits only.",
+            "tier-everyday": "Synthetic standard coding model: isolated changes and common unit tests.",
+            "tier-large": "Synthetic advanced coding model: coupled components and complex debugging.",
+            "tier-hardest": "Synthetic strongest model: risky design or ambiguous safety decisions.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999878749949858
+        }
+      ],
+      "result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": 0.41,
+        "reason": "low_confidence",
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 498,
+          "output_tokens": 62
+        },
+        "elapsed_ms": 729,
+        "workflow": "model",
+        "judgments": [
+          {
+            "selected": "tier-large",
+            "confidence": 0.41,
+            "probabilities": {
+              "tier-hardest": 0.0,
+              "tier-everyday": 0.1,
+              "none": 0.36,
+              "tier-tiny": 0.0,
+              "tier-large": 0.54
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 498,
+              "output_tokens": 62
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.0916e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "model-07",
+      "workflow": "model",
+      "expected": "tier-hardest",
+      "observed": null,
+      "match": false,
+      "input": {
+        "request": "Resolve conflicting requirements for a security boundary.",
+        "context": {
+          "fixture": "fictional capabilities only"
+        },
+        "candidates": [
+          {
+            "id": "tier-tiny",
+            "size": "tiny",
+            "description": "Synthetic lowest-cost model: short routine text edits only."
+          },
+          {
+            "id": "tier-everyday",
+            "size": "everyday",
+            "description": "Synthetic standard coding model: isolated changes and common unit tests."
+          },
+          {
+            "id": "tier-large",
+            "size": "large",
+            "description": "Synthetic advanced coding model: coupled components and complex debugging."
+          },
+          {
+            "id": "tier-hardest",
+            "size": "hardest",
+            "description": "Synthetic strongest model: risky design or ambiguous safety decisions."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "tier-tiny": "Synthetic lowest-cost model: short routine text edits only.",
+            "tier-everyday": "Synthetic standard coding model: isolated changes and common unit tests.",
+            "tier-large": "Synthetic advanced coding model: coupled components and complex debugging.",
+            "tier-hardest": "Synthetic strongest model: risky design or ambiguous safety decisions.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999873833032325
+        }
+      ],
+      "result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": 0.5,
+        "reason": "low_confidence",
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 497,
+          "output_tokens": 61
+        },
+        "elapsed_ms": 682,
+        "workflow": "model",
+        "judgments": [
+          {
+            "selected": "none",
+            "confidence": 0.5,
+            "probabilities": {
+              "tier-hardest": 0.33,
+              "tier-everyday": 0.03,
+              "none": 0.6,
+              "tier-tiny": 0.0,
+              "tier-large": 0.04
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 497,
+              "output_tokens": 61
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.0874e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "model-08",
+      "workflow": "model",
+      "expected": "tier-hardest",
+      "observed": "tier-hardest",
+      "match": true,
+      "input": {
+        "request": "Review a high-impact ambiguous migration for data loss.",
+        "context": {
+          "fixture": "fictional capabilities only"
+        },
+        "candidates": [
+          {
+            "id": "tier-tiny",
+            "size": "tiny",
+            "description": "Synthetic lowest-cost model: short routine text edits only."
+          },
+          {
+            "id": "tier-everyday",
+            "size": "everyday",
+            "description": "Synthetic standard coding model: isolated changes and common unit tests."
+          },
+          {
+            "id": "tier-large",
+            "size": "large",
+            "description": "Synthetic advanced coding model: coupled components and complex debugging."
+          },
+          {
+            "id": "tier-hardest",
+            "size": "hardest",
+            "description": "Synthetic strongest model: risky design or ambiguous safety decisions."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "tier-tiny": "Synthetic lowest-cost model: short routine text edits only.",
+            "tier-everyday": "Synthetic standard coding model: isolated changes and common unit tests.",
+            "tier-large": "Synthetic advanced coding model: coupled components and complex debugging.",
+            "tier-hardest": "Synthetic strongest model: risky design or ambiguous safety decisions.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.99960716709029
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "tier-hardest",
+        "confidence": 0.72,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 501,
+          "output_tokens": 64
+        },
+        "elapsed_ms": 710,
+        "workflow": "model",
+        "model_size": "hardest",
+        "judgments": [
+          {
+            "selected": "tier-hardest",
+            "confidence": 0.72,
+            "probabilities": {
+              "tier-hardest": 0.78,
+              "tier-tiny": 0.0,
+              "tier-everyday": 0.01,
+              "none": 0.18,
+              "tier-large": 0.03
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 501,
+              "output_tokens": 64
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.1042e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "bypass-private",
+      "workflow": "model",
+      "expected": null,
+      "observed": null,
+      "match": true,
+      "input": {
+        "request": "Private synthetic request",
+        "candidates": [
+          {
+            "id": "tier-tiny",
+            "size": "tiny",
+            "description": "Synthetic lowest-cost model: short routine text edits only."
+          },
+          {
+            "id": "tier-everyday",
+            "size": "everyday",
+            "description": "Synthetic standard coding model: isolated changes and common unit tests."
+          },
+          {
+            "id": "tier-large",
+            "size": "large",
+            "description": "Synthetic advanced coding model: coupled components and complex debugging."
+          },
+          {
+            "id": "tier-hardest",
+            "size": "hardest",
+            "description": "Synthetic strongest model: risky design or ambiguous safety decisions."
+          }
+        ]
+      },
+      "criteria_history": [],
+      "result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": null,
+        "reason": "private"
+      }
+    },
+    {
+      "id": "bypass-followup-1",
+      "workflow": "model",
+      "expected": null,
+      "observed": null,
+      "match": true,
+      "input": {
+        "request": "Yes, do that, but make it shorter.",
+        "candidates": [
+          {
+            "id": "tier-tiny",
+            "size": "tiny",
+            "description": "Synthetic lowest-cost model: short routine text edits only."
+          },
+          {
+            "id": "tier-everyday",
+            "size": "everyday",
+            "description": "Synthetic standard coding model: isolated changes and common unit tests."
+          },
+          {
+            "id": "tier-large",
+            "size": "large",
+            "description": "Synthetic advanced coding model: coupled components and complex debugging."
+          },
+          {
+            "id": "tier-hardest",
+            "size": "hardest",
+            "description": "Synthetic strongest model: risky design or ambiguous safety decisions."
+          }
+        ]
+      },
+      "criteria_history": [],
+      "result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": null,
+        "reason": "contextual_follow_up"
+      }
+    },
+    {
+      "id": "bypass-followup-2",
+      "workflow": "model",
+      "expected": null,
+      "observed": null,
+      "match": true,
+      "input": {
+        "request": "Use the second one.",
+        "candidates": [
+          {
+            "id": "tier-tiny",
+            "size": "tiny",
+            "description": "Synthetic lowest-cost model: short routine text edits only."
+          },
+          {
+            "id": "tier-everyday",
+            "size": "everyday",
+            "description": "Synthetic standard coding model: isolated changes and common unit tests."
+          },
+          {
+            "id": "tier-large",
+            "size": "large",
+            "description": "Synthetic advanced coding model: coupled components and complex debugging."
+          },
+          {
+            "id": "tier-hardest",
+            "size": "hardest",
+            "description": "Synthetic strongest model: risky design or ambiguous safety decisions."
+          }
+        ]
+      },
+      "criteria_history": [],
+      "result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": null,
+        "reason": "contextual_follow_up"
+      }
+    },
+    {
+      "id": "skill-01",
+      "workflow": "skill",
+      "expected": "jev-model-router",
+      "observed": "jev-model-router",
+      "match": true,
+      "input": {
+        "request": "This typo fix is tiny; should I use the small or advanced host model?",
+        "candidates": [
+          {
+            "id": "jev-model-router",
+            "description": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability."
+          },
+          {
+            "id": "jev-skill-picker",
+            "description": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request."
+          },
+          {
+            "id": "jev-context-picker",
+            "description": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task."
+          },
+          {
+            "id": "jev-test-prioritizer",
+            "description": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks."
+          },
+          {
+            "id": "jev-bug-triage",
+            "description": "Suggest the first component to inspect for a bug from a finite set of plausible components."
+          },
+          {
+            "id": "jev-plan-selector",
+            "description": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints."
+          },
+          {
+            "id": "jev-controls",
+            "description": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "jev-model-router": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability.",
+            "jev-skill-picker": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request.",
+            "jev-context-picker": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task.",
+            "jev-test-prioritizer": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks.",
+            "jev-bug-triage": "Suggest the first component to inspect for a bug from a finite set of plausible components.",
+            "jev-plan-selector": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints.",
+            "jev-controls": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999896082910709
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "jev-model-router",
+        "confidence": 0.99,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 616,
+          "output_tokens": 95
+        },
+        "elapsed_ms": 683,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "jev-model-router",
+            "confidence": 0.99,
+            "probabilities": {
+              "jev-controls": 0.0,
+              "jev-skill-picker": 0.0,
+              "jev-bug-triage": 0.0,
+              "jev-test-prioritizer": 0.0,
+              "jev-model-router": 0.99,
+              "jev-context-picker": 0.0,
+              "jev-plan-selector": 0.0,
+              "none": 0.01
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 616,
+              "output_tokens": 95
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.5872e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "skill-02",
+      "workflow": "skill",
+      "expected": "jev-skill-picker",
+      "observed": null,
+      "match": false,
+      "input": {
+        "request": "I found several installed aids. Which is relevant to changing a parser?",
+        "candidates": [
+          {
+            "id": "jev-model-router",
+            "description": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability."
+          },
+          {
+            "id": "jev-skill-picker",
+            "description": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request."
+          },
+          {
+            "id": "jev-context-picker",
+            "description": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task."
+          },
+          {
+            "id": "jev-test-prioritizer",
+            "description": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks."
+          },
+          {
+            "id": "jev-bug-triage",
+            "description": "Suggest the first component to inspect for a bug from a finite set of plausible components."
+          },
+          {
+            "id": "jev-plan-selector",
+            "description": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints."
+          },
+          {
+            "id": "jev-controls",
+            "description": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "jev-model-router": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability.",
+            "jev-skill-picker": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request.",
+            "jev-context-picker": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task.",
+            "jev-test-prioritizer": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks.",
+            "jev-bug-triage": "Suggest the first component to inspect for a bug from a finite set of plausible components.",
+            "jev-plan-selector": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints.",
+            "jev-controls": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999910166952759
+        }
+      ],
+      "result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": 0.53,
+        "reason": "low_confidence",
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 614,
+          "output_tokens": 96
+        },
+        "elapsed_ms": 749,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "jev-skill-picker",
+            "confidence": 0.53,
+            "probabilities": {
+              "jev-bug-triage": 0.01,
+              "jev-skill-picker": 0.58,
+              "jev-model-router": 0.01,
+              "jev-test-prioritizer": 0.0,
+              "jev-plan-selector": 0.0,
+              "none": 0.33,
+              "jev-controls": 0.05,
+              "jev-context-picker": 0.02
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 614,
+              "output_tokens": 96
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.5788e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "skill-03",
+      "workflow": "skill",
+      "expected": "jev-context-picker",
+      "observed": "jev-context-picker",
+      "match": true,
+      "input": {
+        "request": "I have three likely files; which one should I read next?",
+        "candidates": [
+          {
+            "id": "jev-model-router",
+            "description": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability."
+          },
+          {
+            "id": "jev-skill-picker",
+            "description": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request."
+          },
+          {
+            "id": "jev-context-picker",
+            "description": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task."
+          },
+          {
+            "id": "jev-test-prioritizer",
+            "description": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks."
+          },
+          {
+            "id": "jev-bug-triage",
+            "description": "Suggest the first component to inspect for a bug from a finite set of plausible components."
+          },
+          {
+            "id": "jev-plan-selector",
+            "description": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints."
+          },
+          {
+            "id": "jev-controls",
+            "description": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "jev-model-router": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability.",
+            "jev-skill-picker": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request.",
+            "jev-context-picker": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task.",
+            "jev-test-prioritizer": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks.",
+            "jev-bug-triage": "Suggest the first component to inspect for a bug from a finite set of plausible components.",
+            "jev-plan-selector": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints.",
+            "jev-controls": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999858499970287
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "jev-context-picker",
+        "confidence": 0.71,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 613,
+          "output_tokens": 95
+        },
+        "elapsed_ms": 753,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "jev-context-picker",
+            "confidence": 0.71,
+            "probabilities": {
+              "jev-controls": 0.0,
+              "jev-context-picker": 0.75,
+              "jev-bug-triage": 0.02,
+              "jev-model-router": 0.0,
+              "jev-skill-picker": 0.0,
+              "jev-test-prioritizer": 0.0,
+              "jev-plan-selector": 0.0,
+              "none": 0.23
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 613,
+              "output_tokens": 95
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.5746e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "skill-04",
+      "workflow": "skill",
+      "expected": "jev-test-prioritizer",
+      "observed": "jev-test-prioritizer",
+      "match": true,
+      "input": {
+        "request": "The parser changed. Which existing check is most informative to run first?",
+        "candidates": [
+          {
+            "id": "jev-model-router",
+            "description": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability."
+          },
+          {
+            "id": "jev-skill-picker",
+            "description": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request."
+          },
+          {
+            "id": "jev-context-picker",
+            "description": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task."
+          },
+          {
+            "id": "jev-test-prioritizer",
+            "description": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks."
+          },
+          {
+            "id": "jev-bug-triage",
+            "description": "Suggest the first component to inspect for a bug from a finite set of plausible components."
+          },
+          {
+            "id": "jev-plan-selector",
+            "description": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints."
+          },
+          {
+            "id": "jev-controls",
+            "description": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "jev-model-router": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability.",
+            "jev-skill-picker": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request.",
+            "jev-context-picker": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task.",
+            "jev-test-prioritizer": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks.",
+            "jev-bug-triage": "Suggest the first component to inspect for a bug from a finite set of plausible components.",
+            "jev-plan-selector": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints.",
+            "jev-controls": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.99988137499895
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "jev-test-prioritizer",
+        "confidence": 0.88,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 614,
+          "output_tokens": 98
+        },
+        "elapsed_ms": 746,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "jev-test-prioritizer",
+            "confidence": 0.88,
+            "probabilities": {
+              "none": 0.08,
+              "jev-test-prioritizer": 0.9,
+              "jev-skill-picker": 0.0,
+              "jev-bug-triage": 0.02,
+              "jev-plan-selector": 0.0,
+              "jev-controls": 0.0,
+              "jev-context-picker": 0.0,
+              "jev-model-router": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 614,
+              "output_tokens": 98
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.5788e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "skill-05",
+      "workflow": "skill",
+      "expected": "jev-bug-triage",
+      "observed": "jev-bug-triage",
+      "match": true,
+      "input": {
+        "request": "Empty input now throws before rendering. Where should I investigate first?",
+        "candidates": [
+          {
+            "id": "jev-model-router",
+            "description": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability."
+          },
+          {
+            "id": "jev-skill-picker",
+            "description": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request."
+          },
+          {
+            "id": "jev-context-picker",
+            "description": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task."
+          },
+          {
+            "id": "jev-test-prioritizer",
+            "description": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks."
+          },
+          {
+            "id": "jev-bug-triage",
+            "description": "Suggest the first component to inspect for a bug from a finite set of plausible components."
+          },
+          {
+            "id": "jev-plan-selector",
+            "description": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints."
+          },
+          {
+            "id": "jev-controls",
+            "description": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "jev-model-router": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability.",
+            "jev-skill-picker": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request.",
+            "jev-context-picker": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task.",
+            "jev-test-prioritizer": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks.",
+            "jev-bug-triage": "Suggest the first component to inspect for a bug from a finite set of plausible components.",
+            "jev-plan-selector": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints.",
+            "jev-controls": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999887541984208
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "jev-bug-triage",
+        "confidence": 0.86,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 613,
+          "output_tokens": 98
+        },
+        "elapsed_ms": 643,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "jev-bug-triage",
+            "confidence": 0.86,
+            "probabilities": {
+              "jev-plan-selector": 0.0,
+              "jev-model-router": 0.0,
+              "jev-skill-picker": 0.0,
+              "jev-test-prioritizer": 0.0,
+              "jev-context-picker": 0.0,
+              "jev-bug-triage": 0.88,
+              "none": 0.12,
+              "jev-controls": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 613,
+              "output_tokens": 98
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.5746e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "skill-06",
+      "workflow": "skill",
+      "expected": "jev-plan-selector",
+      "observed": "jev-plan-selector",
+      "match": true,
+      "input": {
+        "request": "I wrote two feasible ways to fix this edge case. Which fits the constraints?",
+        "candidates": [
+          {
+            "id": "jev-model-router",
+            "description": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability."
+          },
+          {
+            "id": "jev-skill-picker",
+            "description": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request."
+          },
+          {
+            "id": "jev-context-picker",
+            "description": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task."
+          },
+          {
+            "id": "jev-test-prioritizer",
+            "description": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks."
+          },
+          {
+            "id": "jev-bug-triage",
+            "description": "Suggest the first component to inspect for a bug from a finite set of plausible components."
+          },
+          {
+            "id": "jev-plan-selector",
+            "description": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints."
+          },
+          {
+            "id": "jev-controls",
+            "description": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "jev-model-router": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability.",
+            "jev-skill-picker": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request.",
+            "jev-context-picker": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task.",
+            "jev-test-prioritizer": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks.",
+            "jev-bug-triage": "Suggest the first component to inspect for a bug from a finite set of plausible components.",
+            "jev-plan-selector": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints.",
+            "jev-controls": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999905084026977
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "jev-plan-selector",
+        "confidence": 0.88,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 616,
+          "output_tokens": 95
+        },
+        "elapsed_ms": 697,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "jev-plan-selector",
+            "confidence": 0.88,
+            "probabilities": {
+              "jev-controls": 0.0,
+              "jev-context-picker": 0.0,
+              "jev-model-router": 0.0,
+              "jev-bug-triage": 0.0,
+              "jev-plan-selector": 0.89,
+              "jev-skill-picker": 0.0,
+              "jev-test-prioritizer": 0.0,
+              "none": 0.11
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 616,
+              "output_tokens": 95
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.5872e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "skill-07",
+      "workflow": "skill",
+      "expected": "jev-controls",
+      "observed": "jev-controls",
+      "match": true,
+      "input": {
+        "request": "Are remote automatic suggestions enabled, and how do I turn them off?",
+        "candidates": [
+          {
+            "id": "jev-model-router",
+            "description": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability."
+          },
+          {
+            "id": "jev-skill-picker",
+            "description": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request."
+          },
+          {
+            "id": "jev-context-picker",
+            "description": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task."
+          },
+          {
+            "id": "jev-test-prioritizer",
+            "description": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks."
+          },
+          {
+            "id": "jev-bug-triage",
+            "description": "Suggest the first component to inspect for a bug from a finite set of plausible components."
+          },
+          {
+            "id": "jev-plan-selector",
+            "description": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints."
+          },
+          {
+            "id": "jev-controls",
+            "description": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "jev-model-router": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability.",
+            "jev-skill-picker": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request.",
+            "jev-context-picker": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task.",
+            "jev-test-prioritizer": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks.",
+            "jev-bug-triage": "Suggest the first component to inspect for a bug from a finite set of plausible components.",
+            "jev-plan-selector": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints.",
+            "jev-controls": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999886083067395
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "jev-controls",
+        "confidence": 0.82,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 614,
+          "output_tokens": 94
+        },
+        "elapsed_ms": 705,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "jev-controls",
+            "confidence": 0.82,
+            "probabilities": {
+              "jev-plan-selector": 0.0,
+              "jev-context-picker": 0.0,
+              "jev-bug-triage": 0.0,
+              "none": 0.15,
+              "jev-model-router": 0.0,
+              "jev-controls": 0.85,
+              "jev-test-prioritizer": 0.0,
+              "jev-skill-picker": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 614,
+              "output_tokens": 94
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.5788e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "skill-08",
+      "workflow": "skill",
+      "expected": "none",
+      "observed": "none",
+      "match": true,
+      "input": {
+        "request": "Suggest a lunch recipe from available ingredients.",
+        "candidates": [
+          {
+            "id": "jev-model-router",
+            "description": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability."
+          },
+          {
+            "id": "jev-skill-picker",
+            "description": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request."
+          },
+          {
+            "id": "jev-context-picker",
+            "description": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task."
+          },
+          {
+            "id": "jev-test-prioritizer",
+            "description": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks."
+          },
+          {
+            "id": "jev-bug-triage",
+            "description": "Suggest the first component to inspect for a bug from a finite set of plausible components."
+          },
+          {
+            "id": "jev-plan-selector",
+            "description": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints."
+          },
+          {
+            "id": "jev-controls",
+            "description": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "jev-model-router": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability.",
+            "jev-skill-picker": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request.",
+            "jev-context-picker": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task.",
+            "jev-test-prioritizer": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks.",
+            "jev-bug-triage": "Suggest the first component to inspect for a bug from a finite set of plausible components.",
+            "jev-plan-selector": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints.",
+            "jev-controls": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999917790992185
+        }
+      ],
+      "result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": 0.99,
+        "reason": "none_selected",
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 609,
+          "output_tokens": 93
+        },
+        "elapsed_ms": 704,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "none",
+            "confidence": 0.99,
+            "probabilities": {
+              "jev-skill-picker": 0.0,
+              "jev-controls": 0.0,
+              "jev-plan-selector": 0.0,
+              "jev-model-router": 0.0,
+              "jev-test-prioritizer": 0.0,
+              "jev-bug-triage": 0.0,
+              "none": 1.0,
+              "jev-context-picker": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 609,
+              "output_tokens": 93
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.5578e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "skill-09",
+      "workflow": "skill",
+      "expected": "none",
+      "observed": "none",
+      "match": true,
+      "input": {
+        "request": "Translate a fictional poem into another language.",
+        "candidates": [
+          {
+            "id": "jev-model-router",
+            "description": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability."
+          },
+          {
+            "id": "jev-skill-picker",
+            "description": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request."
+          },
+          {
+            "id": "jev-context-picker",
+            "description": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task."
+          },
+          {
+            "id": "jev-test-prioritizer",
+            "description": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks."
+          },
+          {
+            "id": "jev-bug-triage",
+            "description": "Suggest the first component to inspect for a bug from a finite set of plausible components."
+          },
+          {
+            "id": "jev-plan-selector",
+            "description": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints."
+          },
+          {
+            "id": "jev-controls",
+            "description": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "jev-model-router": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability.",
+            "jev-skill-picker": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request.",
+            "jev-context-picker": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task.",
+            "jev-test-prioritizer": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks.",
+            "jev-bug-triage": "Suggest the first component to inspect for a bug from a finite set of plausible components.",
+            "jev-plan-selector": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints.",
+            "jev-controls": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999884916003793
+        }
+      ],
+      "result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": 0.99,
+        "reason": "none_selected",
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 608,
+          "output_tokens": 93
+        },
+        "elapsed_ms": 694,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "none",
+            "confidence": 0.99,
+            "probabilities": {
+              "jev-bug-triage": 0.0,
+              "jev-test-prioritizer": 0.0,
+              "jev-skill-picker": 0.0,
+              "none": 1.0,
+              "jev-controls": 0.0,
+              "jev-context-picker": 0.0,
+              "jev-model-router": 0.0,
+              "jev-plan-selector": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 608,
+              "output_tokens": 93
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.5536e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "skill-10",
+      "workflow": "skill",
+      "expected": "none",
+      "observed": "none",
+      "match": true,
+      "input": {
+        "request": "Calculate the area of a synthetic circle.",
+        "candidates": [
+          {
+            "id": "jev-model-router",
+            "description": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability."
+          },
+          {
+            "id": "jev-skill-picker",
+            "description": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request."
+          },
+          {
+            "id": "jev-context-picker",
+            "description": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task."
+          },
+          {
+            "id": "jev-test-prioritizer",
+            "description": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks."
+          },
+          {
+            "id": "jev-bug-triage",
+            "description": "Suggest the first component to inspect for a bug from a finite set of plausible components."
+          },
+          {
+            "id": "jev-plan-selector",
+            "description": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints."
+          },
+          {
+            "id": "jev-controls",
+            "description": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "jev-model-router": "Suggest one host-provided coding model for a bounded task when several available models differ in cost and capability.",
+            "jev-skill-picker": "Suggest one relevant installed Agent Skill from an explicit, sanitized shortlist for a coding request.",
+            "jev-context-picker": "Suggest the next one relevant context item from a small, already retrieved shortlist for a coding task.",
+            "jev-test-prioritizer": "Suggest the first test target to run from a known shortlist while preserving all mandatory project checks.",
+            "jev-bug-triage": "Suggest the first component to inspect for a bug from a finite set of plausible components.",
+            "jev-plan-selector": "Suggest one prewritten implementation plan among a few feasible alternatives under explicit task constraints.",
+            "jev-controls": "Inspect and change opt-in Jev workflow settings or install the portable Jev Agent Skills when requested.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999867415986955
+        }
+      ],
+      "result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": 0.92,
+        "reason": "none_selected",
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 608,
+          "output_tokens": 93
+        },
+        "elapsed_ms": 660,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "none",
+            "confidence": 0.92,
+            "probabilities": {
+              "jev-plan-selector": 0.0,
+              "jev-context-picker": 0.0,
+              "jev-bug-triage": 0.0,
+              "jev-model-router": 0.0,
+              "none": 0.93,
+              "jev-test-prioritizer": 0.0,
+              "jev-controls": 0.0,
+              "jev-skill-picker": 0.07
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 608,
+              "output_tokens": 93
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 2.5536e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "extra-context",
+      "workflow": "context",
+      "expected": "parser",
+      "observed": "parser",
+      "match": true,
+      "input": {
+        "request": "Pick the error parser description to inspect after a parse failure.",
+        "candidates": [
+          {
+            "id": "parser",
+            "description": "Parses error messages."
+          },
+          {
+            "id": "cache",
+            "description": "Stores rendered messages."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "parser": "Parses error messages.",
+            "cache": "Stores rendered messages.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.99969758396037
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "parser",
+        "confidence": 0.91,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 403,
+          "output_tokens": 38
+        },
+        "elapsed_ms": 662,
+        "workflow": "context",
+        "judgments": [
+          {
+            "selected": "parser",
+            "confidence": 0.91,
+            "probabilities": {
+              "none": 0.06,
+              "cache": 0.0,
+              "parser": 0.94
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 403,
+              "output_tokens": 38
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 1.6926e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "extra-tests",
+      "workflow": "tests",
+      "expected": "unit-parser",
+      "observed": "unit-parser",
+      "match": true,
+      "input": {
+        "request": "Pick the parser unit test first after changing parsing.",
+        "candidates": [
+          {
+            "id": "unit-parser",
+            "description": "Parser unit tests."
+          },
+          {
+            "id": "ui-check",
+            "description": "Visual layout check."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "unit-parser": "Parser unit tests.",
+            "ui-check": "Visual layout check.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999929459067062
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "unit-parser",
+        "confidence": 0.97,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 404,
+          "output_tokens": 41
+        },
+        "elapsed_ms": 719,
+        "workflow": "tests",
+        "judgments": [
+          {
+            "selected": "unit-parser",
+            "confidence": 0.97,
+            "probabilities": {
+              "unit-parser": 0.98,
+              "none": 0.02,
+              "ui-check": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 404,
+              "output_tokens": 41
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 1.6968e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "extra-bug",
+      "workflow": "bug",
+      "expected": "parser",
+      "observed": "parser",
+      "match": true,
+      "input": {
+        "request": "A synthetic parse exception occurs on empty input. Where to inspect first?",
+        "candidates": [
+          {
+            "id": "parser",
+            "description": "Handles empty input."
+          },
+          {
+            "id": "renderer",
+            "description": "Renders parsed values."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "parser": "Handles empty input.",
+            "renderer": "Renders parsed values.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999862957978621
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "parser",
+        "confidence": 0.99,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 410,
+          "output_tokens": 38
+        },
+        "elapsed_ms": 651,
+        "workflow": "bug",
+        "judgments": [
+          {
+            "selected": "parser",
+            "confidence": 0.99,
+            "probabilities": {
+              "none": 0.01,
+              "parser": 0.99,
+              "renderer": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 410,
+              "output_tokens": 38
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 1.722e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "extra-plan",
+      "workflow": "plan",
+      "expected": "local-fix",
+      "observed": "local-fix",
+      "match": true,
+      "input": {
+        "request": "Choose a minimal parser fix with a regression test.",
+        "candidates": [
+          {
+            "id": "local-fix",
+            "description": "Fix parser and add unit regression."
+          },
+          {
+            "id": "rewrite",
+            "description": "Replace the application framework."
+          }
+        ]
+      },
+      "criteria_history": [
+        {
+          "criteria": {
+            "local-fix": "Fix parser and add unit regression.",
+            "rewrite": "Replace the application framework.",
+            "none": "None of the listed candidates is appropriate, or essential context is missing."
+          },
+          "request_timeout_seconds": 11.999935957952403
+        }
+      ],
+      "result": {
+        "route": "recommendation",
+        "selected": "local-fix",
+        "confidence": 0.62,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 416,
+          "output_tokens": 42
+        },
+        "elapsed_ms": 670,
+        "workflow": "plan",
+        "judgments": [
+          {
+            "selected": "local-fix",
+            "confidence": 0.62,
+            "probabilities": {
+              "rewrite": 0.0,
+              "none": 0.26,
+              "local-fix": 0.74
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 416,
+              "output_tokens": 42
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 1.7472e-05,
+        "cost_complete": true
+      }
+    }
+  ],
+  "summary": {
+    "count": 25,
+    "matches": 20,
+    "mismatches": [
+      "model-02",
+      "model-05",
+      "model-06",
+      "model-07",
+      "skill-02"
+    ],
+    "calls": 22,
+    "unaccounted_calls": 0
+  }
+}

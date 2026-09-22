@@ -1,0 +1,17 @@
+\!notes/
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.DS_Store
+.jev-skills/
+.agents/
+.specify/*
+!.specify/memory/
+.specify/memory/*
+!.specify/memory/constitution.md

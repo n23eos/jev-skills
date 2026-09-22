@@ -1,0 +1,11 @@
+{
+  "request": "Which available coding model fits a small parser fix with a unit test?",
+  "context": {
+    "note": "Replace these fictional IDs and capability descriptions with actual host-provided choices before a real decision. Order by cost or size."
+  },
+  "candidates": [
+    {"id": "example-small", "size": "tiny", "description": "Placeholder only: routine edits and short tests."},
+    {"id": "example-standard", "size": "everyday", "description": "Placeholder only: scoped code changes and unit tests."},
+    {"id": "example-advanced", "size": "large", "description": "Placeholder only: coupled code changes and debugging."}
+  ]
+}

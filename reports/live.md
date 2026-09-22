@@ -1,0 +1,27 @@
+| Fixture | Expected | Observed | Match | Confidence | Calls | Latency ms | Input tokens | Output tokens | Estimated USD | Reason |
+| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| model-01 | tier-tiny | tier-tiny | True | 0.8 | 1 | 776 | 497 | 63 | 2.0874e-05 | None |
+| model-02 | tier-tiny | None | False | 0.59 | 1 | 652 | 499 | 63 | 2.0958e-05 | low_confidence |
+| model-03 | tier-everyday | tier-everyday | True | 0.85 | 1 | 700 | 498 | 64 | 2.0916e-05 | None |
+| model-04 | tier-everyday | tier-everyday | True | 0.62 | 1 | 658 | 497 | 64 | 2.0874e-05 | None |
+| model-05 | tier-large | None | False | 0.5 | 1 | 721 | 500 | 62 | 2.1e-05 | low_confidence |
+| model-06 | tier-large | None | False | 0.41 | 1 | 729 | 498 | 62 | 2.0916e-05 | low_confidence |
+| model-07 | tier-hardest | None | False | 0.5 | 1 | 682 | 497 | 61 | 2.0874e-05 | low_confidence |
+| model-08 | tier-hardest | tier-hardest | True | 0.72 | 1 | 710 | 501 | 64 | 2.1042e-05 | None |
+| bypass-private | None | None | True | None | 0 | None | 0 | 0 | None | private |
+| bypass-followup-1 | None | None | True | None | 0 | None | 0 | 0 | None | contextual_follow_up |
+| bypass-followup-2 | None | None | True | None | 0 | None | 0 | 0 | None | contextual_follow_up |
+| skill-01 | jev-model-router | jev-model-router | True | 0.99 | 1 | 683 | 616 | 95 | 2.5872e-05 | None |
+| skill-02 | jev-skill-picker | None | False | 0.53 | 1 | 749 | 614 | 96 | 2.5788e-05 | low_confidence |
+| skill-03 | jev-context-picker | jev-context-picker | True | 0.71 | 1 | 753 | 613 | 95 | 2.5746e-05 | None |
+| skill-04 | jev-test-prioritizer | jev-test-prioritizer | True | 0.88 | 1 | 746 | 614 | 98 | 2.5788e-05 | None |
+| skill-05 | jev-bug-triage | jev-bug-triage | True | 0.86 | 1 | 643 | 613 | 98 | 2.5746e-05 | None |
+| skill-06 | jev-plan-selector | jev-plan-selector | True | 0.88 | 1 | 697 | 616 | 95 | 2.5872e-05 | None |
+| skill-07 | jev-controls | jev-controls | True | 0.82 | 1 | 705 | 614 | 94 | 2.5788e-05 | None |
+| skill-08 | none | none | True | 0.99 | 1 | 704 | 609 | 93 | 2.5578e-05 | none_selected |
+| skill-09 | none | none | True | 0.99 | 1 | 694 | 608 | 93 | 2.5536e-05 | none_selected |
+| skill-10 | none | none | True | 0.92 | 1 | 660 | 608 | 93 | 2.5536e-05 | none_selected |
+| extra-context | parser | parser | True | 0.91 | 1 | 662 | 403 | 38 | 1.6926e-05 | None |
+| extra-tests | unit-parser | unit-parser | True | 0.97 | 1 | 719 | 404 | 41 | 1.6968e-05 | None |
+| extra-bug | parser | parser | True | 0.99 | 1 | 651 | 410 | 38 | 1.722e-05 | None |
+| extra-plan | local-fix | local-fix | True | 0.62 | 1 | 670 | 416 | 42 | 1.7472e-05 | None |

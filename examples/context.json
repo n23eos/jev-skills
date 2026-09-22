@@ -1,0 +1,7 @@
+{
+  "request": "Which synthetic file description is relevant to a parser exception?",
+  "candidates": [
+    {"id": "parser-module", "description": "Describes input parsing and error handling."},
+    {"id": "theme-module", "description": "Describes visual colors and spacing."}
+  ]
+}

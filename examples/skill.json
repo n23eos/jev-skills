@@ -1,0 +1,7 @@
+{
+  "request": "Pick a skill to choose the first existing test target to run.",
+  "candidates": [
+    {"id": "jev-test-prioritizer", "description": "Suggests which known test target to run first; does not waive mandatory checks."},
+    {"id": "jev-context-picker", "description": "Suggests the next known context item to inspect."}
+  ]
+}

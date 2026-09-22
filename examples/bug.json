@@ -1,0 +1,8 @@
+{
+  "request": "Where should investigation start for a fictional empty-input parse exception?",
+  "context": {"symptom": "Empty input raises a parse error; cause is not yet confirmed."},
+  "candidates": [
+    {"id": "input-parser", "description": "Transforms incoming text into structured values."},
+    {"id": "report-renderer", "description": "Formats valid structured values for display."}
+  ]
+}

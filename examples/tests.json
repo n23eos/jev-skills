@@ -1,0 +1,8 @@
+{
+  "request": "Which test should run first after fixing a parser exception?",
+  "context": {"mandatory_checks_still_required": true},
+  "candidates": [
+    {"id": "parser-unit", "description": "Existing parser unit tests."},
+    {"id": "layout-snapshot", "description": "Existing visual layout snapshot tests."}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "request": "Choose a small plan for fixing the fictional empty-input parser error.",
+  "context": {"constraints": ["Keep behavior for nonempty input", "Add a regression test"]},
+  "candidates": [
+    {"id": "targeted-fix", "description": "Reproduce the error, fix empty-input handling, and run parser regression tests."},
+    {"id": "rewrite", "description": "Replace the entire parser framework before checking empty input."}
+  ]
+}
