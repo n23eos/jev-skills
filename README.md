@@ -1,5 +1,7 @@
 # Jev Skills
 
+![Jev Skills: routing coding tasks across skills and models](assets/jev-skills-cover.png)
+
 Seven installable skills for Claude Code and Codex. Ask your agent to pick a relevant skill, choose a suitable model, or decide where to investigate and test first. Jev makes a small, bounded choice; your coding agent does the work.
 
 Use this when several skills or next steps plausibly fit and choosing requires judgment. Skip it when the answer is obvious, the request is private or a contextual follow-up, or a project rule already determines the next step. These skills do not prove better decisions, lower cost, or faster work; evaluate them on your own tasks before adopting automatic use.
