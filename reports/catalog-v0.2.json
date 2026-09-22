@@ -1,0 +1,2183 @@
+{
+  "mode": "live_synthetic",
+  "network": true,
+  "generated_at_utc": "2026-09-22T12:21:29.537882+00:00",
+  "model_version": "jev-1.13.0",
+  "per_case_timeout_seconds": 2.0,
+  "source": "Public synthetic coding-skill catalog. Names, descriptions and labels are author-assigned, not installed host skills.",
+  "limitations": "Author-assigned public synthetic labels; no private catalogs, native host loading or production accuracy claim.",
+  "summary": {
+    "cases": 33,
+    "eligible": 30,
+    "contextual_bypasses": 3,
+    "by_kind": {
+      "direct": 18,
+      "ambiguous": 8,
+      "negative": 4,
+      "contextual_follow_up": 3
+    },
+    "baseline_raw": {
+      "matches": 25,
+      "total": 30,
+      "accuracy": 0.8333
+    },
+    "baseline_gated": {
+      "matches": 28,
+      "total": 33,
+      "accuracy": 0.8485
+    },
+    "jev_raw": {
+      "matches": 30,
+      "total": 30,
+      "accuracy": 1.0
+    },
+    "jev_gated": {
+      "matches": 33,
+      "total": 33,
+      "accuracy": 1.0
+    },
+    "jev_accounting": {
+      "calls": 30,
+      "completed_calls": 30,
+      "unaccounted_calls": 0,
+      "input_tokens": 36820,
+      "output_tokens": 8903,
+      "known_cost_usd": 0.00154644,
+      "cost_complete": true,
+      "failed_cases": [],
+      "mismatched_cases": []
+    }
+  },
+  "cases": [
+    {
+      "id": "direct-01",
+      "kind": "direct",
+      "expected": "python-unit-tests",
+      "baseline_raw": "python-unit-tests",
+      "baseline_gated": "python-unit-tests",
+      "jev_raw": "python-unit-tests",
+      "jev_gated": "python-unit-tests",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "python-unit-tests",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1226,
+          "output_tokens": 297
+        },
+        "elapsed_ms": 786,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "python-unit-tests",
+            "confidence": 1.0,
+            "probabilities": {
+              "auth-flows": 0.0,
+              "kubernetes-deploy": 0.0,
+              "python-unit-tests": 1.0,
+              "security-threat-model": 0.0,
+              "typescript-types": 0.0,
+              "queue-workers": 0.0,
+              "sql-performance": 0.0,
+              "kotlin-coroutines": 0.0,
+              "docker-build": 0.0,
+              "react-accessibility": 0.0,
+              "release-management": 0.0,
+              "logging-observability": 0.0,
+              "go-concurrency": 0.0,
+              "rust-testing": 0.0,
+              "documentation": 0.0,
+              "swiftui-state": 0.0,
+              "pdf-processing": 0.0,
+              "cli-design": 0.0,
+              "api-design": 0.0,
+              "feature-flags": 0.0,
+              "error-handling": 0.0,
+              "ci-pipeline": 0.0,
+              "websocket-realtime": 0.0,
+              "cache-design": 0.0,
+              "performance-profiling": 0.0,
+              "database-migrations": 0.0,
+              "css-layout": 0.0,
+              "image-processing": 0.0,
+              "none": 0.0,
+              "data-validation": 0.0,
+              "secret-management": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1226,
+              "output_tokens": 297
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1492e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-02",
+      "kind": "direct",
+      "expected": "typescript-types",
+      "baseline_raw": "typescript-types",
+      "baseline_gated": "typescript-types",
+      "jev_raw": "typescript-types",
+      "jev_gated": "typescript-types",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "typescript-types",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1231,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 703,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "typescript-types",
+            "confidence": 1.0,
+            "probabilities": {
+              "pdf-processing": 0.0,
+              "kubernetes-deploy": 0.0,
+              "swiftui-state": 0.0,
+              "queue-workers": 0.0,
+              "cache-design": 0.0,
+              "data-validation": 0.0,
+              "secret-management": 0.0,
+              "documentation": 0.0,
+              "kotlin-coroutines": 0.0,
+              "css-layout": 0.0,
+              "docker-build": 0.0,
+              "websocket-realtime": 0.0,
+              "react-accessibility": 0.0,
+              "feature-flags": 0.0,
+              "go-concurrency": 0.0,
+              "rust-testing": 0.0,
+              "none": 0.0,
+              "typescript-types": 1.0,
+              "security-threat-model": 0.0,
+              "api-design": 0.0,
+              "python-unit-tests": 0.0,
+              "release-management": 0.0,
+              "performance-profiling": 0.0,
+              "auth-flows": 0.0,
+              "sql-performance": 0.0,
+              "cli-design": 0.0,
+              "ci-pipeline": 0.0,
+              "logging-observability": 0.0,
+              "error-handling": 0.0,
+              "database-migrations": 0.0,
+              "image-processing": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1231,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1702e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-03",
+      "kind": "direct",
+      "expected": "react-accessibility",
+      "baseline_raw": "react-accessibility",
+      "baseline_gated": "react-accessibility",
+      "jev_raw": "react-accessibility",
+      "jev_gated": "react-accessibility",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "react-accessibility",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1228,
+          "output_tokens": 299
+        },
+        "elapsed_ms": 733,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "react-accessibility",
+            "confidence": 1.0,
+            "probabilities": {
+              "error-handling": 0.0,
+              "react-accessibility": 1.0,
+              "release-management": 0.0,
+              "data-validation": 0.0,
+              "kubernetes-deploy": 0.0,
+              "css-layout": 0.0,
+              "docker-build": 0.0,
+              "sql-performance": 0.0,
+              "kotlin-coroutines": 0.0,
+              "performance-profiling": 0.0,
+              "secret-management": 0.0,
+              "database-migrations": 0.0,
+              "cli-design": 0.0,
+              "api-design": 0.0,
+              "feature-flags": 0.0,
+              "ci-pipeline": 0.0,
+              "websocket-realtime": 0.0,
+              "documentation": 0.0,
+              "go-concurrency": 0.0,
+              "cache-design": 0.0,
+              "pdf-processing": 0.0,
+              "rust-testing": 0.0,
+              "auth-flows": 0.0,
+              "image-processing": 0.0,
+              "swiftui-state": 0.0,
+              "queue-workers": 0.0,
+              "logging-observability": 0.0,
+              "none": 0.0,
+              "python-unit-tests": 0.0,
+              "security-threat-model": 0.0,
+              "typescript-types": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1228,
+              "output_tokens": 299
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1576e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-04",
+      "kind": "direct",
+      "expected": "css-layout",
+      "baseline_raw": "css-layout",
+      "baseline_gated": "css-layout",
+      "jev_raw": "css-layout",
+      "jev_gated": "css-layout",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "css-layout",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1228,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 721,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "css-layout",
+            "confidence": 1.0,
+            "probabilities": {
+              "error-handling": 0.0,
+              "secret-management": 0.0,
+              "database-migrations": 0.0,
+              "go-concurrency": 0.0,
+              "data-validation": 0.0,
+              "cache-design": 0.0,
+              "none": 0.0,
+              "pdf-processing": 0.0,
+              "feature-flags": 0.0,
+              "docker-build": 0.0,
+              "logging-observability": 0.0,
+              "websocket-realtime": 0.0,
+              "typescript-types": 0.0,
+              "swiftui-state": 0.0,
+              "css-layout": 1.0,
+              "api-design": 0.0,
+              "auth-flows": 0.0,
+              "python-unit-tests": 0.0,
+              "ci-pipeline": 0.0,
+              "performance-profiling": 0.0,
+              "release-management": 0.0,
+              "documentation": 0.0,
+              "queue-workers": 0.0,
+              "image-processing": 0.0,
+              "sql-performance": 0.0,
+              "rust-testing": 0.0,
+              "security-threat-model": 0.0,
+              "kubernetes-deploy": 0.0,
+              "react-accessibility": 0.0,
+              "cli-design": 0.0,
+              "kotlin-coroutines": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1228,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1576e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-05",
+      "kind": "direct",
+      "expected": "api-design",
+      "baseline_raw": "api-design",
+      "baseline_gated": "api-design",
+      "jev_raw": "api-design",
+      "jev_gated": "api-design",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "api-design",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1230,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 716,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "api-design",
+            "confidence": 1.0,
+            "probabilities": {
+              "docker-build": 0.0,
+              "css-layout": 0.0,
+              "websocket-realtime": 0.0,
+              "swiftui-state": 0.0,
+              "go-concurrency": 0.0,
+              "python-unit-tests": 0.0,
+              "documentation": 0.0,
+              "none": 0.0,
+              "performance-profiling": 0.0,
+              "error-handling": 0.0,
+              "typescript-types": 0.0,
+              "react-accessibility": 0.0,
+              "image-processing": 0.0,
+              "cli-design": 0.0,
+              "rust-testing": 0.0,
+              "data-validation": 0.0,
+              "database-migrations": 0.0,
+              "auth-flows": 0.0,
+              "kubernetes-deploy": 0.0,
+              "queue-workers": 0.0,
+              "cache-design": 0.0,
+              "feature-flags": 0.0,
+              "security-threat-model": 0.0,
+              "sql-performance": 0.0,
+              "api-design": 1.0,
+              "kotlin-coroutines": 0.0,
+              "release-management": 0.0,
+              "ci-pipeline": 0.0,
+              "logging-observability": 0.0,
+              "pdf-processing": 0.0,
+              "secret-management": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1230,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.166e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-06",
+      "kind": "direct",
+      "expected": "auth-flows",
+      "baseline_raw": "auth-flows",
+      "baseline_gated": "auth-flows",
+      "jev_raw": "auth-flows",
+      "jev_gated": "auth-flows",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "auth-flows",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1225,
+          "output_tokens": 297
+        },
+        "elapsed_ms": 688,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "auth-flows",
+            "confidence": 1.0,
+            "probabilities": {
+              "python-unit-tests": 0.0,
+              "queue-workers": 0.0,
+              "logging-observability": 0.0,
+              "release-management": 0.0,
+              "css-layout": 0.0,
+              "typescript-types": 0.0,
+              "kotlin-coroutines": 0.0,
+              "data-validation": 0.0,
+              "feature-flags": 0.0,
+              "react-accessibility": 0.0,
+              "error-handling": 0.0,
+              "ci-pipeline": 0.0,
+              "cli-design": 0.0,
+              "none": 0.0,
+              "kubernetes-deploy": 0.0,
+              "docker-build": 0.0,
+              "swiftui-state": 0.0,
+              "image-processing": 0.0,
+              "go-concurrency": 0.0,
+              "websocket-realtime": 0.0,
+              "auth-flows": 1.0,
+              "pdf-processing": 0.0,
+              "api-design": 0.0,
+              "performance-profiling": 0.0,
+              "database-migrations": 0.0,
+              "sql-performance": 0.0,
+              "rust-testing": 0.0,
+              "security-threat-model": 0.0,
+              "documentation": 0.0,
+              "secret-management": 0.0,
+              "cache-design": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1225,
+              "output_tokens": 297
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.145e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-07",
+      "kind": "direct",
+      "expected": "database-migrations",
+      "baseline_raw": "database-migrations",
+      "baseline_gated": "database-migrations",
+      "jev_raw": "database-migrations",
+      "jev_gated": "database-migrations",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "database-migrations",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1228,
+          "output_tokens": 298
+        },
+        "elapsed_ms": 767,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "database-migrations",
+            "confidence": 1.0,
+            "probabilities": {
+              "secret-management": 0.0,
+              "docker-build": 0.0,
+              "css-layout": 0.0,
+              "security-threat-model": 0.0,
+              "feature-flags": 0.0,
+              "database-migrations": 1.0,
+              "api-design": 0.0,
+              "pdf-processing": 0.0,
+              "cli-design": 0.0,
+              "performance-profiling": 0.0,
+              "auth-flows": 0.0,
+              "kubernetes-deploy": 0.0,
+              "release-management": 0.0,
+              "data-validation": 0.0,
+              "python-unit-tests": 0.0,
+              "go-concurrency": 0.0,
+              "sql-performance": 0.0,
+              "none": 0.0,
+              "rust-testing": 0.0,
+              "ci-pipeline": 0.0,
+              "swiftui-state": 0.0,
+              "queue-workers": 0.0,
+              "error-handling": 0.0,
+              "websocket-realtime": 0.0,
+              "react-accessibility": 0.0,
+              "kotlin-coroutines": 0.0,
+              "image-processing": 0.0,
+              "cache-design": 0.0,
+              "logging-observability": 0.0,
+              "documentation": 0.0,
+              "typescript-types": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1228,
+              "output_tokens": 298
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1576e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-08",
+      "kind": "direct",
+      "expected": "sql-performance",
+      "baseline_raw": "sql-performance",
+      "baseline_gated": "sql-performance",
+      "jev_raw": "sql-performance",
+      "jev_gated": "sql-performance",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "sql-performance",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1229,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 799,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "sql-performance",
+            "confidence": 1.0,
+            "probabilities": {
+              "error-handling": 0.0,
+              "documentation": 0.0,
+              "image-processing": 0.0,
+              "sql-performance": 1.0,
+              "cli-design": 0.0,
+              "rust-testing": 0.0,
+              "css-layout": 0.0,
+              "security-threat-model": 0.0,
+              "data-validation": 0.0,
+              "react-accessibility": 0.0,
+              "typescript-types": 0.0,
+              "swiftui-state": 0.0,
+              "logging-observability": 0.0,
+              "queue-workers": 0.0,
+              "kotlin-coroutines": 0.0,
+              "performance-profiling": 0.0,
+              "cache-design": 0.0,
+              "feature-flags": 0.0,
+              "docker-build": 0.0,
+              "none": 0.0,
+              "database-migrations": 0.0,
+              "go-concurrency": 0.0,
+              "ci-pipeline": 0.0,
+              "websocket-realtime": 0.0,
+              "api-design": 0.0,
+              "kubernetes-deploy": 0.0,
+              "pdf-processing": 0.0,
+              "python-unit-tests": 0.0,
+              "auth-flows": 0.0,
+              "release-management": 0.0,
+              "secret-management": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1229,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1618e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-09",
+      "kind": "direct",
+      "expected": "cache-design",
+      "baseline_raw": "cache-design",
+      "baseline_gated": "cache-design",
+      "jev_raw": "cache-design",
+      "jev_gated": "cache-design",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "cache-design",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1229,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 765,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "cache-design",
+            "confidence": 1.0,
+            "probabilities": {
+              "auth-flows": 0.0,
+              "docker-build": 0.0,
+              "cache-design": 1.0,
+              "python-unit-tests": 0.0,
+              "image-processing": 0.0,
+              "documentation": 0.0,
+              "error-handling": 0.0,
+              "typescript-types": 0.0,
+              "rust-testing": 0.0,
+              "ci-pipeline": 0.0,
+              "api-design": 0.0,
+              "feature-flags": 0.0,
+              "swiftui-state": 0.0,
+              "performance-profiling": 0.0,
+              "pdf-processing": 0.0,
+              "sql-performance": 0.0,
+              "secret-management": 0.0,
+              "security-threat-model": 0.0,
+              "kotlin-coroutines": 0.0,
+              "none": 0.0,
+              "react-accessibility": 0.0,
+              "database-migrations": 0.0,
+              "logging-observability": 0.0,
+              "data-validation": 0.0,
+              "css-layout": 0.0,
+              "kubernetes-deploy": 0.0,
+              "websocket-realtime": 0.0,
+              "go-concurrency": 0.0,
+              "release-management": 0.0,
+              "queue-workers": 0.0,
+              "cli-design": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1229,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1618e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-10",
+      "kind": "direct",
+      "expected": "queue-workers",
+      "baseline_raw": "queue-workers",
+      "baseline_gated": "queue-workers",
+      "jev_raw": "queue-workers",
+      "jev_gated": "queue-workers",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "queue-workers",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1228,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 754,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "queue-workers",
+            "confidence": 1.0,
+            "probabilities": {
+              "queue-workers": 1.0,
+              "release-management": 0.0,
+              "sql-performance": 0.0,
+              "cli-design": 0.0,
+              "api-design": 0.0,
+              "swiftui-state": 0.0,
+              "typescript-types": 0.0,
+              "performance-profiling": 0.0,
+              "pdf-processing": 0.0,
+              "data-validation": 0.0,
+              "python-unit-tests": 0.0,
+              "kotlin-coroutines": 0.0,
+              "auth-flows": 0.0,
+              "none": 0.0,
+              "security-threat-model": 0.0,
+              "react-accessibility": 0.0,
+              "go-concurrency": 0.0,
+              "kubernetes-deploy": 0.0,
+              "image-processing": 0.0,
+              "feature-flags": 0.0,
+              "error-handling": 0.0,
+              "css-layout": 0.0,
+              "websocket-realtime": 0.0,
+              "logging-observability": 0.0,
+              "cache-design": 0.0,
+              "docker-build": 0.0,
+              "secret-management": 0.0,
+              "rust-testing": 0.0,
+              "documentation": 0.0,
+              "database-migrations": 0.0,
+              "ci-pipeline": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1228,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1576e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-11",
+      "kind": "direct",
+      "expected": "kubernetes-deploy",
+      "baseline_raw": "kubernetes-deploy",
+      "baseline_gated": "kubernetes-deploy",
+      "jev_raw": "kubernetes-deploy",
+      "jev_gated": "kubernetes-deploy",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "kubernetes-deploy",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1226,
+          "output_tokens": 299
+        },
+        "elapsed_ms": 761,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "kubernetes-deploy",
+            "confidence": 1.0,
+            "probabilities": {
+              "docker-build": 0.0,
+              "swiftui-state": 0.0,
+              "release-management": 0.0,
+              "ci-pipeline": 0.0,
+              "logging-observability": 0.0,
+              "queue-workers": 0.0,
+              "sql-performance": 0.0,
+              "typescript-types": 0.0,
+              "cache-design": 0.0,
+              "rust-testing": 0.0,
+              "performance-profiling": 0.0,
+              "auth-flows": 0.0,
+              "css-layout": 0.0,
+              "pdf-processing": 0.0,
+              "error-handling": 0.0,
+              "kotlin-coroutines": 0.0,
+              "data-validation": 0.0,
+              "go-concurrency": 0.0,
+              "security-threat-model": 0.0,
+              "kubernetes-deploy": 1.0,
+              "python-unit-tests": 0.0,
+              "none": 0.0,
+              "feature-flags": 0.0,
+              "react-accessibility": 0.0,
+              "secret-management": 0.0,
+              "api-design": 0.0,
+              "websocket-realtime": 0.0,
+              "cli-design": 0.0,
+              "documentation": 0.0,
+              "image-processing": 0.0,
+              "database-migrations": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1226,
+              "output_tokens": 299
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1492e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-12",
+      "kind": "direct",
+      "expected": "docker-build",
+      "baseline_raw": "docker-build",
+      "baseline_gated": "docker-build",
+      "jev_raw": "docker-build",
+      "jev_gated": "docker-build",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "docker-build",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1231,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 723,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "docker-build",
+            "confidence": 1.0,
+            "probabilities": {
+              "ci-pipeline": 0.0,
+              "release-management": 0.0,
+              "sql-performance": 0.0,
+              "cli-design": 0.0,
+              "api-design": 0.0,
+              "swiftui-state": 0.0,
+              "typescript-types": 0.0,
+              "performance-profiling": 0.0,
+              "pdf-processing": 0.0,
+              "data-validation": 0.0,
+              "python-unit-tests": 0.0,
+              "kotlin-coroutines": 0.0,
+              "auth-flows": 0.0,
+              "none": 0.0,
+              "security-threat-model": 0.0,
+              "react-accessibility": 0.0,
+              "go-concurrency": 0.0,
+              "kubernetes-deploy": 0.0,
+              "css-layout": 0.0,
+              "feature-flags": 0.0,
+              "error-handling": 0.0,
+              "image-processing": 0.0,
+              "websocket-realtime": 0.0,
+              "logging-observability": 0.0,
+              "cache-design": 0.0,
+              "docker-build": 1.0,
+              "secret-management": 0.0,
+              "rust-testing": 0.0,
+              "documentation": 0.0,
+              "database-migrations": 0.0,
+              "queue-workers": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1231,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1702e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-13",
+      "kind": "direct",
+      "expected": "ci-pipeline",
+      "baseline_raw": "ci-pipeline",
+      "baseline_gated": "ci-pipeline",
+      "jev_raw": "ci-pipeline",
+      "jev_gated": "ci-pipeline",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "ci-pipeline",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1228,
+          "output_tokens": 298
+        },
+        "elapsed_ms": 725,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "ci-pipeline",
+            "confidence": 1.0,
+            "probabilities": {
+              "go-concurrency": 0.0,
+              "feature-flags": 0.0,
+              "api-design": 0.0,
+              "python-unit-tests": 0.0,
+              "data-validation": 0.0,
+              "database-migrations": 0.0,
+              "sql-performance": 0.0,
+              "pdf-processing": 0.0,
+              "secret-management": 0.0,
+              "documentation": 0.0,
+              "image-processing": 0.0,
+              "swiftui-state": 0.0,
+              "docker-build": 0.0,
+              "rust-testing": 0.0,
+              "kotlin-coroutines": 0.0,
+              "queue-workers": 0.0,
+              "cli-design": 0.0,
+              "websocket-realtime": 0.0,
+              "css-layout": 0.0,
+              "performance-profiling": 0.0,
+              "release-management": 0.0,
+              "cache-design": 0.0,
+              "security-threat-model": 0.0,
+              "react-accessibility": 0.0,
+              "ci-pipeline": 1.0,
+              "auth-flows": 0.0,
+              "logging-observability": 0.0,
+              "kubernetes-deploy": 0.0,
+              "typescript-types": 0.0,
+              "none": 0.0,
+              "error-handling": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1228,
+              "output_tokens": 298
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1576e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-14",
+      "kind": "direct",
+      "expected": "security-threat-model",
+      "baseline_raw": "security-threat-model",
+      "baseline_gated": "security-threat-model",
+      "jev_raw": "security-threat-model",
+      "jev_gated": "security-threat-model",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "security-threat-model",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1226,
+          "output_tokens": 297
+        },
+        "elapsed_ms": 825,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "security-threat-model",
+            "confidence": 1.0,
+            "probabilities": {
+              "api-design": 0.0,
+              "none": 0.0,
+              "typescript-types": 0.0,
+              "database-migrations": 0.0,
+              "go-concurrency": 0.0,
+              "swiftui-state": 0.0,
+              "release-management": 0.0,
+              "react-accessibility": 0.0,
+              "documentation": 0.0,
+              "cache-design": 0.0,
+              "data-validation": 0.0,
+              "ci-pipeline": 0.0,
+              "feature-flags": 0.0,
+              "secret-management": 0.0,
+              "cli-design": 0.0,
+              "sql-performance": 0.0,
+              "logging-observability": 0.0,
+              "pdf-processing": 0.0,
+              "kubernetes-deploy": 0.0,
+              "auth-flows": 0.0,
+              "queue-workers": 0.0,
+              "security-threat-model": 1.0,
+              "python-unit-tests": 0.0,
+              "kotlin-coroutines": 0.0,
+              "image-processing": 0.0,
+              "websocket-realtime": 0.0,
+              "css-layout": 0.0,
+              "docker-build": 0.0,
+              "rust-testing": 0.0,
+              "performance-profiling": 0.0,
+              "error-handling": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1226,
+              "output_tokens": 297
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1492e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-15",
+      "kind": "direct",
+      "expected": "logging-observability",
+      "baseline_raw": "logging-observability",
+      "baseline_gated": "logging-observability",
+      "jev_raw": "logging-observability",
+      "jev_gated": "logging-observability",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "logging-observability",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1225,
+          "output_tokens": 299
+        },
+        "elapsed_ms": 725,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "logging-observability",
+            "confidence": 1.0,
+            "probabilities": {
+              "auth-flows": 0.0,
+              "websocket-realtime": 0.0,
+              "swiftui-state": 0.0,
+              "feature-flags": 0.0,
+              "documentation": 0.0,
+              "image-processing": 0.0,
+              "sql-performance": 0.0,
+              "pdf-processing": 0.0,
+              "logging-observability": 1.0,
+              "release-management": 0.0,
+              "python-unit-tests": 0.0,
+              "go-concurrency": 0.0,
+              "secret-management": 0.0,
+              "cache-design": 0.0,
+              "data-validation": 0.0,
+              "react-accessibility": 0.0,
+              "cli-design": 0.0,
+              "queue-workers": 0.0,
+              "security-threat-model": 0.0,
+              "error-handling": 0.0,
+              "docker-build": 0.0,
+              "kotlin-coroutines": 0.0,
+              "kubernetes-deploy": 0.0,
+              "none": 0.0,
+              "css-layout": 0.0,
+              "performance-profiling": 0.0,
+              "ci-pipeline": 0.0,
+              "database-migrations": 0.0,
+              "rust-testing": 0.0,
+              "typescript-types": 0.0,
+              "api-design": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1225,
+              "output_tokens": 299
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.145e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-16",
+      "kind": "direct",
+      "expected": "performance-profiling",
+      "baseline_raw": "performance-profiling",
+      "baseline_gated": "performance-profiling",
+      "jev_raw": "performance-profiling",
+      "jev_gated": "performance-profiling",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "performance-profiling",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1226,
+          "output_tokens": 298
+        },
+        "elapsed_ms": 791,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "performance-profiling",
+            "confidence": 1.0,
+            "probabilities": {
+              "pdf-processing": 0.0,
+              "api-design": 0.0,
+              "sql-performance": 0.0,
+              "auth-flows": 0.0,
+              "security-threat-model": 0.0,
+              "documentation": 0.0,
+              "secret-management": 0.0,
+              "python-unit-tests": 0.0,
+              "go-concurrency": 0.0,
+              "feature-flags": 0.0,
+              "kotlin-coroutines": 0.0,
+              "none": 0.0,
+              "rust-testing": 0.0,
+              "error-handling": 0.0,
+              "css-layout": 0.0,
+              "ci-pipeline": 0.0,
+              "database-migrations": 0.0,
+              "performance-profiling": 1.0,
+              "typescript-types": 0.0,
+              "kubernetes-deploy": 0.0,
+              "logging-observability": 0.0,
+              "data-validation": 0.0,
+              "swiftui-state": 0.0,
+              "queue-workers": 0.0,
+              "cli-design": 0.0,
+              "docker-build": 0.0,
+              "websocket-realtime": 0.0,
+              "release-management": 0.0,
+              "image-processing": 0.0,
+              "cache-design": 0.0,
+              "react-accessibility": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1226,
+              "output_tokens": 298
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1492e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-17",
+      "kind": "direct",
+      "expected": "rust-testing",
+      "baseline_raw": "rust-testing",
+      "baseline_gated": "rust-testing",
+      "jev_raw": "rust-testing",
+      "jev_gated": "rust-testing",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "rust-testing",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1227,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 702,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "rust-testing",
+            "confidence": 1.0,
+            "probabilities": {
+              "pdf-processing": 0.0,
+              "security-threat-model": 0.0,
+              "kotlin-coroutines": 0.0,
+              "websocket-realtime": 0.0,
+              "sql-performance": 0.0,
+              "cache-design": 0.0,
+              "data-validation": 0.0,
+              "release-management": 0.0,
+              "rust-testing": 1.0,
+              "swiftui-state": 0.0,
+              "typescript-types": 0.0,
+              "react-accessibility": 0.0,
+              "python-unit-tests": 0.0,
+              "api-design": 0.0,
+              "queue-workers": 0.0,
+              "logging-observability": 0.0,
+              "secret-management": 0.0,
+              "database-migrations": 0.0,
+              "cli-design": 0.0,
+              "ci-pipeline": 0.0,
+              "none": 0.0,
+              "error-handling": 0.0,
+              "performance-profiling": 0.0,
+              "image-processing": 0.0,
+              "css-layout": 0.0,
+              "go-concurrency": 0.0,
+              "feature-flags": 0.0,
+              "docker-build": 0.0,
+              "auth-flows": 0.0,
+              "documentation": 0.0,
+              "kubernetes-deploy": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1227,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1534e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "direct-18",
+      "kind": "direct",
+      "expected": "pdf-processing",
+      "baseline_raw": "pdf-processing",
+      "baseline_gated": "pdf-processing",
+      "jev_raw": "pdf-processing",
+      "jev_gated": "pdf-processing",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "pdf-processing",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1227,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 687,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "pdf-processing",
+            "confidence": 1.0,
+            "probabilities": {
+              "pdf-processing": 1.0,
+              "api-design": 0.0,
+              "sql-performance": 0.0,
+              "auth-flows": 0.0,
+              "security-threat-model": 0.0,
+              "secret-management": 0.0,
+              "documentation": 0.0,
+              "python-unit-tests": 0.0,
+              "go-concurrency": 0.0,
+              "feature-flags": 0.0,
+              "kotlin-coroutines": 0.0,
+              "none": 0.0,
+              "rust-testing": 0.0,
+              "error-handling": 0.0,
+              "css-layout": 0.0,
+              "ci-pipeline": 0.0,
+              "database-migrations": 0.0,
+              "performance-profiling": 0.0,
+              "kubernetes-deploy": 0.0,
+              "typescript-types": 0.0,
+              "logging-observability": 0.0,
+              "data-validation": 0.0,
+              "swiftui-state": 0.0,
+              "queue-workers": 0.0,
+              "cli-design": 0.0,
+              "docker-build": 0.0,
+              "websocket-realtime": 0.0,
+              "release-management": 0.0,
+              "image-processing": 0.0,
+              "cache-design": 0.0,
+              "react-accessibility": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1227,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1534e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "ambiguous-01",
+      "kind": "ambiguous",
+      "expected": "database-migrations",
+      "baseline_raw": "database-migrations",
+      "baseline_gated": "database-migrations",
+      "jev_raw": "database-migrations",
+      "jev_gated": "database-migrations",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "database-migrations",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1227,
+          "output_tokens": 298
+        },
+        "elapsed_ms": 669,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "database-migrations",
+            "confidence": 1.0,
+            "probabilities": {
+              "docker-build": 0.0,
+              "swiftui-state": 0.0,
+              "release-management": 0.0,
+              "sql-performance": 0.0,
+              "logging-observability": 0.0,
+              "queue-workers": 0.0,
+              "typescript-types": 0.0,
+              "ci-pipeline": 0.0,
+              "cache-design": 0.0,
+              "rust-testing": 0.0,
+              "performance-profiling": 0.0,
+              "auth-flows": 0.0,
+              "css-layout": 0.0,
+              "pdf-processing": 0.0,
+              "error-handling": 0.0,
+              "kotlin-coroutines": 0.0,
+              "data-validation": 0.0,
+              "go-concurrency": 0.0,
+              "security-threat-model": 0.0,
+              "kubernetes-deploy": 0.0,
+              "python-unit-tests": 0.0,
+              "none": 0.0,
+              "feature-flags": 0.0,
+              "react-accessibility": 0.0,
+              "secret-management": 0.0,
+              "api-design": 0.0,
+              "cli-design": 0.0,
+              "websocket-realtime": 0.0,
+              "documentation": 0.0,
+              "image-processing": 0.0,
+              "database-migrations": 1.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1227,
+              "output_tokens": 298
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1534e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "ambiguous-02",
+      "kind": "ambiguous",
+      "expected": "react-accessibility",
+      "baseline_raw": "react-accessibility",
+      "baseline_gated": "react-accessibility",
+      "jev_raw": "react-accessibility",
+      "jev_gated": "react-accessibility",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "react-accessibility",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1231,
+          "output_tokens": 299
+        },
+        "elapsed_ms": 660,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "react-accessibility",
+            "confidence": 1.0,
+            "probabilities": {
+              "queue-workers": 0.0,
+              "release-management": 0.0,
+              "sql-performance": 0.0,
+              "cli-design": 0.0,
+              "api-design": 0.0,
+              "swiftui-state": 0.0,
+              "typescript-types": 0.0,
+              "performance-profiling": 0.0,
+              "pdf-processing": 0.0,
+              "data-validation": 0.0,
+              "python-unit-tests": 0.0,
+              "kotlin-coroutines": 0.0,
+              "auth-flows": 0.0,
+              "none": 0.0,
+              "security-threat-model": 0.0,
+              "react-accessibility": 1.0,
+              "go-concurrency": 0.0,
+              "kubernetes-deploy": 0.0,
+              "image-processing": 0.0,
+              "feature-flags": 0.0,
+              "error-handling": 0.0,
+              "css-layout": 0.0,
+              "websocket-realtime": 0.0,
+              "logging-observability": 0.0,
+              "cache-design": 0.0,
+              "docker-build": 0.0,
+              "secret-management": 0.0,
+              "rust-testing": 0.0,
+              "documentation": 0.0,
+              "database-migrations": 0.0,
+              "ci-pipeline": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1231,
+              "output_tokens": 299
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1702e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "ambiguous-03",
+      "kind": "ambiguous",
+      "expected": "api-design",
+      "baseline_raw": "api-design",
+      "baseline_gated": "api-design",
+      "jev_raw": "api-design",
+      "jev_gated": "api-design",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "api-design",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1228,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 673,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "api-design",
+            "confidence": 1.0,
+            "probabilities": {
+              "docker-build": 0.0,
+              "css-layout": 0.0,
+              "websocket-realtime": 0.0,
+              "swiftui-state": 0.0,
+              "go-concurrency": 0.0,
+              "documentation": 0.0,
+              "python-unit-tests": 0.0,
+              "none": 0.0,
+              "performance-profiling": 0.0,
+              "error-handling": 0.0,
+              "typescript-types": 0.0,
+              "react-accessibility": 0.0,
+              "image-processing": 0.0,
+              "cli-design": 0.0,
+              "rust-testing": 0.0,
+              "data-validation": 0.0,
+              "cache-design": 0.0,
+              "auth-flows": 0.0,
+              "database-migrations": 0.0,
+              "queue-workers": 0.0,
+              "kubernetes-deploy": 0.0,
+              "feature-flags": 0.0,
+              "security-threat-model": 0.0,
+              "sql-performance": 0.0,
+              "api-design": 1.0,
+              "kotlin-coroutines": 0.0,
+              "release-management": 0.0,
+              "ci-pipeline": 0.0,
+              "logging-observability": 0.0,
+              "pdf-processing": 0.0,
+              "secret-management": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1228,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1576e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "ambiguous-04",
+      "kind": "ambiguous",
+      "expected": "queue-workers",
+      "baseline_raw": "none",
+      "baseline_gated": "none",
+      "jev_raw": "queue-workers",
+      "jev_gated": "queue-workers",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "queue-workers",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1226,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 737,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "queue-workers",
+            "confidence": 1.0,
+            "probabilities": {
+              "cli-design": 0.0,
+              "logging-observability": 0.0,
+              "release-management": 0.0,
+              "performance-profiling": 0.0,
+              "cache-design": 0.0,
+              "websocket-realtime": 0.0,
+              "queue-workers": 1.0,
+              "none": 0.0,
+              "api-design": 0.0,
+              "feature-flags": 0.0,
+              "docker-build": 0.0,
+              "data-validation": 0.0,
+              "documentation": 0.0,
+              "go-concurrency": 0.0,
+              "error-handling": 0.0,
+              "typescript-types": 0.0,
+              "rust-testing": 0.0,
+              "security-threat-model": 0.0,
+              "ci-pipeline": 0.0,
+              "sql-performance": 0.0,
+              "kotlin-coroutines": 0.0,
+              "swiftui-state": 0.0,
+              "python-unit-tests": 0.0,
+              "secret-management": 0.0,
+              "auth-flows": 0.0,
+              "react-accessibility": 0.0,
+              "image-processing": 0.0,
+              "css-layout": 0.0,
+              "kubernetes-deploy": 0.0,
+              "database-migrations": 0.0,
+              "pdf-processing": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1226,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1492e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "ambiguous-05",
+      "kind": "ambiguous",
+      "expected": "react-accessibility",
+      "baseline_raw": "none",
+      "baseline_gated": "none",
+      "jev_raw": "react-accessibility",
+      "jev_gated": "react-accessibility",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "react-accessibility",
+        "confidence": 0.84,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1228,
+          "output_tokens": 299
+        },
+        "elapsed_ms": 809,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "react-accessibility",
+            "confidence": 0.84,
+            "probabilities": {
+              "swiftui-state": 0.0,
+              "logging-observability": 0.0,
+              "docker-build": 0.0,
+              "pdf-processing": 0.0,
+              "secret-management": 0.0,
+              "error-handling": 0.0,
+              "cli-design": 0.0,
+              "auth-flows": 0.0,
+              "css-layout": 0.0,
+              "ci-pipeline": 0.0,
+              "security-threat-model": 0.0,
+              "documentation": 0.01,
+              "database-migrations": 0.0,
+              "react-accessibility": 0.84,
+              "sql-performance": 0.0,
+              "kubernetes-deploy": 0.0,
+              "websocket-realtime": 0.0,
+              "go-concurrency": 0.0,
+              "release-management": 0.0,
+              "kotlin-coroutines": 0.0,
+              "api-design": 0.0,
+              "queue-workers": 0.0,
+              "feature-flags": 0.0,
+              "typescript-types": 0.0,
+              "performance-profiling": 0.0,
+              "image-processing": 0.0,
+              "cache-design": 0.0,
+              "rust-testing": 0.0,
+              "none": 0.15,
+              "data-validation": 0.0,
+              "python-unit-tests": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1228,
+              "output_tokens": 299
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1576e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "ambiguous-06",
+      "kind": "ambiguous",
+      "expected": "queue-workers",
+      "baseline_raw": "none",
+      "baseline_gated": "none",
+      "jev_raw": "queue-workers",
+      "jev_gated": "queue-workers",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "queue-workers",
+        "confidence": 1.0,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1228,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 712,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "queue-workers",
+            "confidence": 1.0,
+            "probabilities": {
+              "error-handling": 0.0,
+              "python-unit-tests": 0.0,
+              "pdf-processing": 0.0,
+              "kotlin-coroutines": 0.0,
+              "ci-pipeline": 0.0,
+              "data-validation": 0.0,
+              "release-management": 0.0,
+              "swiftui-state": 0.0,
+              "auth-flows": 0.0,
+              "queue-workers": 1.0,
+              "feature-flags": 0.0,
+              "react-accessibility": 0.0,
+              "docker-build": 0.0,
+              "css-layout": 0.0,
+              "sql-performance": 0.0,
+              "performance-profiling": 0.0,
+              "image-processing": 0.0,
+              "websocket-realtime": 0.0,
+              "go-concurrency": 0.0,
+              "cache-design": 0.0,
+              "none": 0.0,
+              "rust-testing": 0.0,
+              "secret-management": 0.0,
+              "logging-observability": 0.0,
+              "typescript-types": 0.0,
+              "database-migrations": 0.0,
+              "api-design": 0.0,
+              "documentation": 0.0,
+              "security-threat-model": 0.0,
+              "kubernetes-deploy": 0.0,
+              "cli-design": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1228,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1576e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "ambiguous-07",
+      "kind": "ambiguous",
+      "expected": "data-validation",
+      "baseline_raw": "none",
+      "baseline_gated": "none",
+      "jev_raw": "data-validation",
+      "jev_gated": "data-validation",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "data-validation",
+        "confidence": 0.96,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1227,
+          "output_tokens": 296
+        },
+        "elapsed_ms": 724,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "data-validation",
+            "confidence": 0.96,
+            "probabilities": {
+              "api-design": 0.0,
+              "none": 0.0,
+              "go-concurrency": 0.0,
+              "database-migrations": 0.0,
+              "typescript-types": 0.0,
+              "swiftui-state": 0.0,
+              "release-management": 0.0,
+              "cache-design": 0.0,
+              "documentation": 0.0,
+              "react-accessibility": 0.0,
+              "data-validation": 0.96,
+              "ci-pipeline": 0.0,
+              "feature-flags": 0.0,
+              "secret-management": 0.0,
+              "cli-design": 0.0,
+              "sql-performance": 0.0,
+              "kubernetes-deploy": 0.0,
+              "pdf-processing": 0.0,
+              "logging-observability": 0.0,
+              "auth-flows": 0.0,
+              "queue-workers": 0.0,
+              "security-threat-model": 0.0,
+              "python-unit-tests": 0.0,
+              "kotlin-coroutines": 0.0,
+              "image-processing": 0.0,
+              "websocket-realtime": 0.0,
+              "docker-build": 0.0,
+              "css-layout": 0.0,
+              "rust-testing": 0.0,
+              "performance-profiling": 0.0,
+              "error-handling": 0.04
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1227,
+              "output_tokens": 296
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1534e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "ambiguous-08",
+      "kind": "ambiguous",
+      "expected": "auth-flows",
+      "baseline_raw": "none",
+      "baseline_gated": "none",
+      "jev_raw": "auth-flows",
+      "jev_gated": "auth-flows",
+      "jev_result": {
+        "route": "recommendation",
+        "selected": "auth-flows",
+        "confidence": 0.99,
+        "reason": null,
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1227,
+          "output_tokens": 297
+        },
+        "elapsed_ms": 698,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "auth-flows",
+            "confidence": 0.99,
+            "probabilities": {
+              "pdf-processing": 0.0,
+              "sql-performance": 0.0,
+              "api-design": 0.0,
+              "auth-flows": 1.0,
+              "security-threat-model": 0.0,
+              "documentation": 0.0,
+              "secret-management": 0.0,
+              "python-unit-tests": 0.0,
+              "go-concurrency": 0.0,
+              "feature-flags": 0.0,
+              "kotlin-coroutines": 0.0,
+              "none": 0.0,
+              "rust-testing": 0.0,
+              "error-handling": 0.0,
+              "ci-pipeline": 0.0,
+              "css-layout": 0.0,
+              "database-migrations": 0.0,
+              "performance-profiling": 0.0,
+              "typescript-types": 0.0,
+              "kubernetes-deploy": 0.0,
+              "logging-observability": 0.0,
+              "data-validation": 0.0,
+              "swiftui-state": 0.0,
+              "queue-workers": 0.0,
+              "cli-design": 0.0,
+              "docker-build": 0.0,
+              "websocket-realtime": 0.0,
+              "release-management": 0.0,
+              "image-processing": 0.0,
+              "cache-design": 0.0,
+              "react-accessibility": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1227,
+              "output_tokens": 297
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1534e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "negative-01",
+      "kind": "negative",
+      "expected": "none",
+      "baseline_raw": "none",
+      "baseline_gated": "none",
+      "jev_raw": "none",
+      "jev_gated": "none",
+      "jev_result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": 1.0,
+        "reason": "none_selected",
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1226,
+          "output_tokens": 295
+        },
+        "elapsed_ms": 688,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "none",
+            "confidence": 1.0,
+            "probabilities": {
+              "cache-design": 0.0,
+              "feature-flags": 0.0,
+              "api-design": 0.0,
+              "go-concurrency": 0.0,
+              "none": 1.0,
+              "sql-performance": 0.0,
+              "websocket-realtime": 0.0,
+              "database-migrations": 0.0,
+              "kubernetes-deploy": 0.0,
+              "ci-pipeline": 0.0,
+              "typescript-types": 0.0,
+              "react-accessibility": 0.0,
+              "error-handling": 0.0,
+              "css-layout": 0.0,
+              "rust-testing": 0.0,
+              "release-management": 0.0,
+              "docker-build": 0.0,
+              "python-unit-tests": 0.0,
+              "data-validation": 0.0,
+              "performance-profiling": 0.0,
+              "auth-flows": 0.0,
+              "security-threat-model": 0.0,
+              "pdf-processing": 0.0,
+              "secret-management": 0.0,
+              "logging-observability": 0.0,
+              "queue-workers": 0.0,
+              "image-processing": 0.0,
+              "cli-design": 0.0,
+              "documentation": 0.0,
+              "swiftui-state": 0.0,
+              "kotlin-coroutines": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1226,
+              "output_tokens": 295
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1492e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "negative-02",
+      "kind": "negative",
+      "expected": "none",
+      "baseline_raw": "none",
+      "baseline_gated": "none",
+      "jev_raw": "none",
+      "jev_gated": "none",
+      "jev_result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": 1.0,
+        "reason": "none_selected",
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1224,
+          "output_tokens": 295
+        },
+        "elapsed_ms": 680,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "none",
+            "confidence": 1.0,
+            "probabilities": {
+              "error-handling": 0.0,
+              "release-management": 0.0,
+              "react-accessibility": 0.0,
+              "data-validation": 0.0,
+              "kubernetes-deploy": 0.0,
+              "css-layout": 0.0,
+              "docker-build": 0.0,
+              "sql-performance": 0.0,
+              "kotlin-coroutines": 0.0,
+              "performance-profiling": 0.0,
+              "secret-management": 0.0,
+              "database-migrations": 0.0,
+              "cli-design": 0.0,
+              "api-design": 0.0,
+              "feature-flags": 0.0,
+              "ci-pipeline": 0.0,
+              "websocket-realtime": 0.0,
+              "go-concurrency": 0.0,
+              "documentation": 0.0,
+              "auth-flows": 0.0,
+              "pdf-processing": 0.0,
+              "rust-testing": 0.0,
+              "cache-design": 0.0,
+              "image-processing": 0.0,
+              "swiftui-state": 0.0,
+              "queue-workers": 0.0,
+              "logging-observability": 0.0,
+              "none": 1.0,
+              "python-unit-tests": 0.0,
+              "security-threat-model": 0.0,
+              "typescript-types": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1224,
+              "output_tokens": 295
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1408e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "negative-03",
+      "kind": "negative",
+      "expected": "none",
+      "baseline_raw": "none",
+      "baseline_gated": "none",
+      "jev_raw": "none",
+      "jev_gated": "none",
+      "jev_result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": 1.0,
+        "reason": "none_selected",
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1224,
+          "output_tokens": 295
+        },
+        "elapsed_ms": 728,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "none",
+            "confidence": 1.0,
+            "probabilities": {
+              "api-design": 0.0,
+              "none": 1.0,
+              "typescript-types": 0.0,
+              "database-migrations": 0.0,
+              "go-concurrency": 0.0,
+              "swiftui-state": 0.0,
+              "release-management": 0.0,
+              "cache-design": 0.0,
+              "documentation": 0.0,
+              "react-accessibility": 0.0,
+              "ci-pipeline": 0.0,
+              "data-validation": 0.0,
+              "feature-flags": 0.0,
+              "secret-management": 0.0,
+              "cli-design": 0.0,
+              "sql-performance": 0.0,
+              "kubernetes-deploy": 0.0,
+              "pdf-processing": 0.0,
+              "logging-observability": 0.0,
+              "auth-flows": 0.0,
+              "queue-workers": 0.0,
+              "security-threat-model": 0.0,
+              "python-unit-tests": 0.0,
+              "kotlin-coroutines": 0.0,
+              "image-processing": 0.0,
+              "websocket-realtime": 0.0,
+              "css-layout": 0.0,
+              "docker-build": 0.0,
+              "rust-testing": 0.0,
+              "performance-profiling": 0.0,
+              "error-handling": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1224,
+              "output_tokens": 295
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1408e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "negative-04",
+      "kind": "negative",
+      "expected": "none",
+      "baseline_raw": "none",
+      "baseline_gated": "none",
+      "jev_raw": "none",
+      "jev_gated": "none",
+      "jev_result": {
+        "route": "fallback",
+        "selected": null,
+        "confidence": 0.91,
+        "reason": "none_selected",
+        "calls": 1,
+        "completed_calls": 1,
+        "unaccounted_calls": 0,
+        "usage": {
+          "input_tokens": 1226,
+          "output_tokens": 295
+        },
+        "elapsed_ms": 695,
+        "workflow": "skill",
+        "judgments": [
+          {
+            "selected": "none",
+            "confidence": 0.91,
+            "probabilities": {
+              "logging-observability": 0.0,
+              "swiftui-state": 0.0,
+              "docker-build": 0.0,
+              "pdf-processing": 0.0,
+              "secret-management": 0.0,
+              "error-handling": 0.0,
+              "cli-design": 0.0,
+              "auth-flows": 0.0,
+              "css-layout": 0.0,
+              "ci-pipeline": 0.0,
+              "security-threat-model": 0.0,
+              "documentation": 0.09,
+              "database-migrations": 0.0,
+              "react-accessibility": 0.0,
+              "sql-performance": 0.0,
+              "kubernetes-deploy": 0.0,
+              "websocket-realtime": 0.0,
+              "go-concurrency": 0.0,
+              "release-management": 0.0,
+              "kotlin-coroutines": 0.0,
+              "api-design": 0.0,
+              "queue-workers": 0.0,
+              "feature-flags": 0.0,
+              "typescript-types": 0.0,
+              "performance-profiling": 0.0,
+              "image-processing": 0.0,
+              "cache-design": 0.0,
+              "none": 0.91,
+              "rust-testing": 0.0,
+              "data-validation": 0.0,
+              "python-unit-tests": 0.0
+            },
+            "model": "jev-1.13.0",
+            "usage": {
+              "input_tokens": 1226,
+              "output_tokens": 295
+            }
+          }
+        ],
+        "estimated_known_cost_usd": 5.1492e-05,
+        "cost_complete": true
+      }
+    },
+    {
+      "id": "followup-01",
+      "kind": "contextual_follow_up",
+      "expected": null,
+      "baseline_raw": "none",
+      "baseline_gated": null,
+      "jev_raw": null,
+      "jev_gated": null,
+      "jev_result": null
+    },
+    {
+      "id": "followup-02",
+      "kind": "contextual_follow_up",
+      "expected": null,
+      "baseline_raw": "none",
+      "baseline_gated": null,
+      "jev_raw": null,
+      "jev_gated": null,
+      "jev_result": null
+    },
+    {
+      "id": "followup-03",
+      "kind": "contextual_follow_up",
+      "expected": null,
+      "baseline_raw": "none",
+      "baseline_gated": null,
+      "jev_raw": null,
+      "jev_gated": null,
+      "jev_result": null
+    }
+  ]
+}

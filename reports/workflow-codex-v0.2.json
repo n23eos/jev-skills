@@ -1,0 +1,35 @@
+{
+  "scope": "Public synthetic installed-catalog and explicit helper flow; not native skill auto-discovery.",
+  "agent": "codex",
+  "requested_model": "gpt-5.6-luna",
+  "skill": {
+    "route": "recommendation",
+    "selected": "python-review",
+    "confidence": 1.0,
+    "reason": null,
+    "usage": {
+      "input_tokens": 446,
+      "output_tokens": 49
+    }
+  },
+  "skill_body_loaded": true,
+  "model": {
+    "route": "fallback",
+    "selected": null,
+    "confidence": 0.58,
+    "reason": "low_confidence",
+    "usage": {
+      "input_tokens": 455,
+      "output_tokens": 45
+    }
+  },
+  "helper": null,
+  "automatic_workflows": {
+    "model": false,
+    "skill": false,
+    "context": false,
+    "tests": false,
+    "bug": false,
+    "plan": false
+  }
+}

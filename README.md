@@ -1,26 +1,68 @@
 # Jev Skills
 
-Seven portable Agent Skills and a small Python CLI for optional, advisory decisions in coding workflows. They can suggest one model, installed skill, next context item, first test target, first bug-inspection component, or prewritten plan. `jev-controls` explains opt-in settings and installation. The agent remains responsible for evidence, permissions, execution, and project-required checks.
+Seven installable skills for Claude Code and Codex. Ask your agent to pick a relevant skill, choose a suitable model, or decide where to investigate and test first. Jev makes a small, bounded choice; your coding agent does the work.
 
-Use this when you already have a small, meaningful shortlist and choosing the next step requires judgment. Skip it when the answer is obvious, the request is private or a contextual follow-up, or a project rule already determines the next step. These skills do not prove better decisions, lower cost, or faster work; evaluate them on your own tasks before adopting automatic use.
+Use this when several skills or next steps plausibly fit and choosing requires judgment. Skip it when the answer is obvious, the request is private or a contextual follow-up, or a project rule already determines the next step. These skills do not prove better decisions, lower cost, or faster work; evaluate them on your own tasks before adopting automatic use.
 
 Jev is a [TypeSafe System One model](https://docs.typesafe.ai/introduction/coding-agents.md), not the conversational model behind Codex or Claude Code. Installing these skills does not replace that model, and a model recommendation does not switch an existing conversation.
 
 ## Install
 
-Prerequisites: Python 3.10 or newer, `git`, and `curl`. Install the CLI in your chosen Python environment from a clone:
+With [uv](https://docs.astral.sh/uv/getting-started/installation/), Git, and curl installed:
 
 ```sh
-git clone https://github.com/n23eos/jev-skills.git
-cd jev-skills
-python3 -m pip install .
+uv tool install 'git+https://github.com/n23eos/jev-skills.git'
 jev-skills install --agent codex
 # Or: jev-skills install --agent claude
+jev-skills doctor
 ```
 
-The installer copies only the skill files. By default, it targets `.agents/skills` or `.claude/skills` in the user's home directory. To target a different agent skills directory, pass `--dest DIRECTORY`. Keep the installed CLI available on `PATH` when using the skills. See [compatibility](docs/compatibility.md) for discovery and invocation differences.
+If the command is not found, run `uv tool update-shell`, then open a new terminal. No uv? Use the [isolated Python installation](docs/getting-started.md). The CLI needs Python 3.10 or newer; uv can provision a compatible Python. Installation does not enable automatic network calls.
 
-## One decision
+Before a live decision, supply your [TypeSafe API key](https://docs.typesafe.ai/api.md) as `TYPESAFE_API_KEY` in the environment that starts your coding agent. Do not paste the key into chat. `jev-skills doctor` checks whether it is present without displaying it. Your Codex or Claude subscription is separate from TypeSafe access.
+
+Restart your coding agent after installation. Then paste one of these:
+
+**Codex**
+
+```text
+$jev-test-prioritizer Use this project's existing test commands to choose which test to run first for a change to login validation. Make one live Jev decision, then run the selected test if appropriate. Do not skip mandatory tests. Keep automatic routing off.
+```
+
+**Claude Code**
+
+```text
+/jev-test-prioritizer Use this project's existing test commands to choose which test to run first for a change to login validation. Make one live Jev decision, then run the selected test if appropriate. Do not skip mandatory tests. Keep automatic routing off.
+```
+
+Use an existing coding project and replace "login validation" with your actual change. The agent handles the candidates and command arguments. You do not need to write JSON. If the project has no tests, it falls back instead of inventing test commands. For `jev-skill-picker`, you also need relevant task-specific skills installed; the picker cannot select a skill you do not have.
+
+| Skill | Ask it to |
+| --- | --- |
+| `jev-skill-picker` | Choose one of your installed skills and hand it back to the agent |
+| `jev-model-router` | Choose a model from your configured models |
+| `jev-context-picker` | Choose which supplied file or excerpt to inspect next |
+| `jev-test-prioritizer` | Choose which existing test target to run first |
+| `jev-bug-triage` | Choose a first component to investigate |
+| `jev-plan-selector` | Compare a few concrete implementation plans |
+| `jev-controls` | Check setup, usage, or switch automatic decisions on and off |
+
+For troubleshooting, updates, and optional project automation, see [Getting started](docs/getting-started.md). The installer targets `~/.agents/skills` for Codex or `~/.claude/skills` for Claude Code, preserves edited skills, and supports `--dest DIRECTORY`.
+
+## CLI examples (optional)
+
+Pick directly from an installed catalog, without constructing JSON:
+
+```sh
+# Local preview. Review the printed names and descriptions before sending them.
+jev-skills pick-skill --root ~/.agents/skills --request 'Review a React form for accessibility'
+# One explicit network trial after reviewing that metadata.
+jev-skills pick-skill --root ~/.agents/skills --request 'Review a React form for accessibility' --live --reviewed-catalog
+```
+
+The result includes an exact local `selected_skill.path` and `next_action: read_skill_then_apply`, or a fallback. Paths and skill bodies are not uploaded. `--show-skill` additionally reads the selected file locally after verifying it has not changed. The agent must read the complete skill and respect its instructions before applying it.
+
+For the other bounded selectors, the agent can prepare the following lower-level input for you:
 
 Use a JSON file with a task request, a finite set of candidates, and optional JSON context. Candidate IDs should be stable and descriptions should explain distinctions relevant to the task. For `model`, candidates may also have a `size` (`tiny`, `everyday`, `large`, or `hardest`) for local usage accounting. Other candidate fields are not used for selection.
 
@@ -65,7 +107,7 @@ TypeSafe Choice supports at most 255 options; this CLI reserves one for `none`, 
 
 ## Development
 
-The [first live evaluation](docs/evaluation.md) contains 22 real API calls plus 3 local bypass probes. Five API decisions fell back below 60% confidence; all failures and raw choices are published. These are synthetic examples, not a production benchmark. A short [launch draft](docs/launch.md) is also available.
+The [v0.2 verification](docs/verification-v0.2.md) covers clean installation, a real catalog selection, helper boundaries, and a larger 30-skill synthetic comparison with a lexical baseline. The [first live evaluation](docs/evaluation.md) retains its 22 API calls and 3 bypass probes, including five low-confidence fallbacks. These are synthetic examples, not production benchmarks. A short [launch draft](docs/launch.md) is also available.
 
 Run network-free checks with the project's test runner:
 

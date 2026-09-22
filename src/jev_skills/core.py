@@ -69,7 +69,7 @@ def validate_input(data: Any) -> dict:
     result = {"request": data["request"], "context": data.get("context", {}), "candidates": candidates}
     try:
         encoded = json.dumps(result, allow_nan=False).encode()
-    except (TypeError, ValueError) as error:
+    except (TypeError, ValueError, RecursionError) as error:
         raise DecisionError("input_not_finite_json") from error
     if len(encoded) > 200_000:
         raise DecisionError("input_too_large")
@@ -150,7 +150,7 @@ def curl_transport(payload: dict, timeout: float) -> dict:
         raise DecisionError("deadline_exceeded" if response.returncode == 28 else "http_or_network_error")
     try:
         return json.loads(response.stdout)
-    except (ValueError, TypeError) as error:
+    except (ValueError, TypeError, RecursionError) as error:
         raise DecisionError("invalid_json_response") from error
 
 
@@ -233,7 +233,7 @@ def select(workflow: str, data: dict, client: Client, *, timeout: float = 3.0,
                 result = {"route": "recommendation", "selected": final["selected"], "confidence": final["confidence"], "reason": None}
                 break
             entries = [entry for entry in entries if entry["id"] in selected]
-    except (DecisionError, OSError, ValueError, TypeError, KeyError, OverflowError) as error:
+    except (DecisionError, OSError, ValueError, TypeError, KeyError, OverflowError, RecursionError) as error:
         result = fallback(str(error) if isinstance(error, DecisionError) else "evaluation_failed")
     result.update(client.stats())
     result["elapsed_ms"] = round((time.monotonic() - start) * 1000)

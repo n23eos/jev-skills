@@ -15,9 +15,18 @@ jobs:
         python: ['3.10', '3.13']
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Migration tests compare the published v0.1 Git fixture.
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
       - run: python -m pip install .
       - run: python -m unittest discover -s tests -v
       - run: jev-skills decide tests --input examples/tests.json
+      - name: Installed CLI and skill destinations
+        run: |
+          jev-skills install --agent codex --dest "$RUNNER_TEMP/jev-codex-skills"
+          jev-skills install --agent claude --dest "$RUNNER_TEMP/jev-claude-skills"
+          jev-skills install --agent codex --dest "$RUNNER_TEMP/jev-codex-skills"
+          jev-skills doctor --agent codex --dest "$RUNNER_TEMP/jev-codex-skills"
+          jev-skills pick-skill --root "$RUNNER_TEMP/jev-codex-skills" --request 'Choose the first test target'

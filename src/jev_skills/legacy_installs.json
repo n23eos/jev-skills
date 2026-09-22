@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "package_version": "0.1.0",
+  "source_commit": "168374dd8238771f595f2cc91237a7085bc88ac6",
+  "skills": {
+    "jev-bug-triage": {"SKILL.md": "5d6fc2dcd4c44a217c5b2e6ffa3e9ab8293382dd434cea2d7012e22bc8a44eb7"},
+    "jev-context-picker": {"SKILL.md": "f7a76658888446f9395bcc36e6cb7dc3a67df38355ab0aeebfd305b4998a116d"},
+    "jev-controls": {"SKILL.md": "0776c99c2d7cc809f5e05a56d3ed764091d15c682db712ec1b7545dab514f680"},
+    "jev-model-router": {"SKILL.md": "c6834d2bfd5dd8bc1ef933053373590833059a37f1275107798b13ee88d4cbf4"},
+    "jev-plan-selector": {"SKILL.md": "1407530e0c6648abecf93036ddf12f0fb03916b442e185f0cfd1c7527dbf48ad"},
+    "jev-skill-picker": {"SKILL.md": "18974b006141eab0582ff7bc2745a9d84d534a713991cd8dbf2de31c02e40cb2"},
+    "jev-test-prioritizer": {"SKILL.md": "cd74f2501793f4032de45bdc8ec739dafe367beb59b655177a58f64c08035a75"}
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "scope": "Captured public synthetic run_helper result on Codex CLI 0.154.0, separate from the low-confidence combined routing trial.",
+  "date": "2026-09-22",
+  "request": "Return exactly JEV_HELPER_OK. This is a public synthetic installation smoke test.",
+  "agent": "codex",
+  "requested_model": "gpt-5.6-luna",
+  "reported_model": null,
+  "answer": "JEV_HELPER_OK",
+  "usage": {"input_tokens": 16314, "output_tokens": 9, "cached_input_tokens": 4864},
+  "cost": null,
+  "status": "completed",
+  "reason": null
+}

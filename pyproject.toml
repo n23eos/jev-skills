@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jev-skills"
-version = "0.1.0"
+version = "0.2.0"
 description = "Jev-powered decision skills for Claude Code and Codex"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -23,4 +23,4 @@ Issues = "https://github.com/n23eos/jev-skills/issues"
 where = ["src"]
 
 [tool.setuptools.package-data]
-jev_skills = ["skills/*/SKILL.md"]
+jev_skills = ["skills/*/SKILL.md", "legacy_installs.json"]
