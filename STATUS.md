@@ -9,4 +9,5 @@ seven manifests validated. Independent review's numeric-overflow issue fixed wit
 Live: 22 API calls and 3 local bypass probes; 5 confidence fallbacks retained in reports.
 Publication: public main branch pushed. GitHub CI passed on Python 3.10 and 3.13.
 Blockers: none. Automatic workflows: off. X announcement: drafted, not posted.
+README follow-up: reused the existing ETH donation badges and Ko-fi button, in that order; links matched the owner's existing repository README blocks.
 Next: opt-in trials with actual host models; evaluate description changes on new cases.
