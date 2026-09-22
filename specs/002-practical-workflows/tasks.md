@@ -6,4 +6,4 @@
 - [x] Real-model profile routing and explicit host helper adapters.
 - [x] Managed host integration and practical skills/documentation.
 - [x] Larger evaluation, baseline comparison and real host smoke checks (Claude auth missing; combined live model route abstained, both retained).
-- [ ] Independent review, complete tests, publish and verify CI.
+- [x] Independent review, complete tests, publish and verify CI (implementation 973f871, run 35727752669).

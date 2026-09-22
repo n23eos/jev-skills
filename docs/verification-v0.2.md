@@ -9,6 +9,7 @@ Checked on 2026-09-22. These are development checks and public synthetic tasks, 
 - Ran the installed `doctor`: all seven files matched their ownership manifest, the CLI was on PATH, and every automatic workflow was off. Missing TypeSafe key was correctly reported without exposing a value.
 - Recreated the published v0.1 skill files from Git and upgraded them through the newly packaged CLI; migration returned `migrated_from: 0.1.0` and retained the original files in a backup.
 - All 100 offline tests passed on Python 3.10 and 3.14; compileall and diff validation passed.
+- After publication, the exact README GitHub installation command fetched v0.2 into another fresh uv environment and installed both host formats. [CI run 35727752669](https://github.com/n23eos/jev-skills/actions/runs/35727752669) passed on Python 3.10 and 3.13, including installed-command checks.
 - Offline regressions exercise catalog-to-local-file handoff, explicit model execution, disabled/private/follow-up bypass before reads, catalog review, installation rollback, edited-file protection, profile validation, and managed project instructions.
 
 These checks confirm packaging and installation layout. They are not an end-to-end test of native skill discovery in every Codex Desktop or Claude Code version. Restart the host, invoke the skill explicitly, and use `doctor` if it is unavailable.
