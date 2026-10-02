@@ -14,6 +14,7 @@ from jev_skills.catalog import MAX_SKILL_BYTES, catalog, manifest
 from jev_skills.core import Client, DecisionError, select
 from jev_skills.skill_selection import (attach_selection, contextual_followup,
                                         load_selected, prepare_skills)
+from jev_skills.skill_selection import _metadata as read_metadata
 
 
 class SkillSelectionTests(unittest.TestCase):
@@ -118,6 +119,39 @@ class SkillSelectionTests(unittest.TestCase):
                      "Create a second parser", "", "First-principles review of this design"):
             with self.subTest(text=text):
                 self.assertFalse(contextual_followup(text))
+
+    def test_excluded_broken_skill_and_read_race_remain_local(self):
+        first = self.skill("one", "name: one\ndescription: First")
+        self.skill("private-excluded", "name: private-excluded\ndescription: [unsupported]")
+        coverage = {}
+        def changed(path):
+            if path == first.resolve():
+                raise PermissionError("PRIVATE_EXCEPTION_TEXT")
+            return read_metadata(path)
+        with patch("jev_skills.skill_selection._metadata", side_effect=changed):
+            with self.assertRaisesRegex(DecisionError, "no_eligible_skills"):
+                prepare_skills("First", [self.root], exclude=["private-excluded"], coverage=coverage)
+        self.assertEqual(coverage["skipped"], [{"path": str(first.resolve()), "reason": "unreadable_skill"}])
+        self.assertEqual(coverage["excluded_count"], 1)
+        self.assertNotIn("PRIVATE_EXCEPTION_TEXT", json.dumps(coverage))
+        self.assertNotIn("private-excluded", json.dumps(coverage))
+
+    def test_valid_metadata_change_is_skipped_before_selection(self):
+        changed = self.skill("changing", "name: changing\ndescription: Reviewed purpose")
+        self.skill("stable", "name: stable\ndescription: Stable purpose")
+        def reread(path):
+            if path == changed.resolve():
+                changed.write_text("---\nname: changed-name\ndescription: PRIVATE_NEW_DESCRIPTION\n---\nChanged body")
+            return read_metadata(path)
+        coverage = {}
+        with patch("jev_skills.skill_selection._metadata", side_effect=reread):
+            data, mapping = prepare_skills("Public task", [self.root], coverage=coverage)
+        self.assertEqual(data["candidates"], [{"id": "stable", "description": "Stable purpose"}])
+        self.assertEqual(set(mapping), {"stable"})
+        self.assertFalse(coverage["complete"])
+        self.assertEqual(coverage["skipped"], [{"path": str(changed.resolve()), "reason": "catalog_metadata_changed"}])
+        self.assertNotIn("PRIVATE_NEW_DESCRIPTION", json.dumps(data))
+        self.assertNotIn("PRIVATE_NEW_DESCRIPTION", json.dumps(coverage))
 
 
 if __name__ == "__main__":

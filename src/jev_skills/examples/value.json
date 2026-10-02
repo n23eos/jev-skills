@@ -1,0 +1,20 @@
+{
+  "request": "Which parsed span is the invoice identifier?",
+  "source": "Invoice INV-204 is due on 2026-10-15.",
+  "spans": [
+    {
+      "id": "invoice-id",
+      "label": "invoice identifier",
+      "start": 8,
+      "end": 15,
+      "value": "INV-204"
+    },
+    {
+      "id": "due-date",
+      "label": "due date",
+      "start": 26,
+      "end": 36,
+      "value": "2026-10-15"
+    }
+  ]
+}

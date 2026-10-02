@@ -1,5 +1,6 @@
 """Offline regression tests for typed decisions and accounting."""
 
+import json
 import math
 import os
 from pathlib import Path
@@ -10,8 +11,9 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from jev_skills.core import (Client, DecisionError, MODEL, NONE, build_request,
-                             curl_transport, select, validate_input, validate_response)
+from jev_skills.core import (Client, DecisionError, MAX_PAYLOAD_BYTES, MODEL, NONE,
+                             build_request, curl_transport, group_requests, select,
+                             validate_input, validate_response)
 
 
 def data(count=2):
@@ -68,6 +70,13 @@ class InputTests(unittest.TestCase):
         sample["request"] = "x" * 100_001
         with self.assertRaises(DecisionError):
             build_request("model", validate_input(sample), sample["candidates"])
+
+    def test_group_request_batch_size_is_bounded(self):
+        validated = validate_input(data())
+        for batch_size in (1, 255, True):
+            with self.subTest(batch_size=batch_size), \
+                    self.assertRaisesRegex(DecisionError, "invalid_batch_size"):
+                group_requests("model", validated, batch_size)
 
 
 class ResponseTests(unittest.TestCase):
@@ -153,6 +162,54 @@ class SelectionTests(unittest.TestCase):
         self.assertEqual(result["usage"], {"input_tokens": 21, "output_tokens": 6})
         self.assertEqual(len(result["judgments"]), 3)
         self.assertTrue(all(0 < remaining <= 3 for remaining in seen))
+
+    def test_long_descriptions_are_grouped_by_encoded_payload_size(self):
+        sample = data(30)
+        for index, candidate in enumerate(sample["candidates"]):
+            language = "English" if index % 2 == 0 else "русский"
+            candidate["description"] = language + " " + "x" * 3892
+        validated = validate_input(sample)
+
+        payloads = group_requests("skill", validated, 128)
+        self.assertEqual(len(payloads), 2)
+        self.assertTrue(all(len(json.dumps(payload, allow_nan=False).encode()) <= MAX_PAYLOAD_BYTES
+                            for payload in payloads))
+
+        seen = []
+        result = select("skill", sample,
+                        Client(lambda payload, remaining: (seen.append(payload), response(payload))[1]),
+                        batch_size=128)
+        self.assertEqual((result["route"], result["selected"]), ("recommendation", "item-0"))
+        self.assertEqual((result["calls"], result["completed_calls"]), (3, 3))
+        self.assertEqual(len(seen), 3)
+        self.assertEqual(len(seen[-1]["questions"]["selection"]["criteria"]) - 1, 2)
+
+    def test_unfit_singleton_falls_back_before_transport(self):
+        sample = data(1)
+        sample["request"] = "x" * 99_000
+        sample["context"] = {"note": "я" * 1_000}
+        validate_input(sample)
+
+        def transport(payload, remaining):
+            raise AssertionError("transport must not be called")
+
+        result = select("skill", sample, Client(transport))
+        self.assertEqual((result["route"], result["reason"]), ("fallback", "payload_too_large"))
+        self.assertEqual((result["calls"], result["completed_calls"]), (0, 0))
+
+    def test_nonshrinking_size_groups_rejected_before_preview_or_live(self):
+        sample = data(2)
+        sample["request"] = "x" * 96_000
+        sample["candidates"][0]["description"] = "English " + "x" * 1_800
+        sample["candidates"][1]["description"] = "русский " + "x" * 1_800
+        validated = validate_input(sample)
+        with self.assertRaisesRegex(DecisionError, "payload_too_large"):
+            group_requests("skill", validated, 128)
+
+        result = select("skill", sample, Client(lambda payload, remaining: response(payload)),
+                        timeout=0.05)
+        self.assertEqual((result["route"], result["reason"]), ("fallback", "payload_too_large"))
+        self.assertEqual(result["calls"], 0)
 
     def test_group_failure_retains_successful_call_usage(self):
         def transport(payload, remaining):

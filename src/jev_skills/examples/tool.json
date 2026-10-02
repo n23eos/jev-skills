@@ -1,0 +1,22 @@
+{
+  "request": "Inspect the official API reference for a named method.",
+  "tools": [
+    {
+      "id": "official-docs",
+      "available": true,
+      "read_only": true,
+      "capabilities": [
+        "Search official documentation",
+        "Open a selected documentation page"
+      ]
+    },
+    {
+      "id": "local-files",
+      "available": true,
+      "read_only": true,
+      "capabilities": [
+        "Search already downloaded local text files"
+      ]
+    }
+  ]
+}

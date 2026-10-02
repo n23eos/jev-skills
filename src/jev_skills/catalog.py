@@ -7,6 +7,7 @@ import re
 import shutil
 
 from .core import DecisionError
+from .skill_registry import PACKAGED_SKILLS
 
 MAX_SKILL_BYTES = 64 * 1024
 MAX_DESCRIPTION = 4000
@@ -123,13 +124,15 @@ def install(agent: str, destination: Path | None = None) -> list[str]:
         raise DecisionError("unknown_agent")
     target = destination or (Path.home() / (".agents" if agent == "codex" else ".claude") / "skills")
     source = Path(__file__).parent / "skills"
-    folders = sorted(folder for folder in source.iterdir() if (folder / "SKILL.md").is_file())
-    if len(folders) != 7:
+    folders = {folder.name: folder for folder in source.iterdir()
+               if folder.is_dir() and not folder.is_symlink()}
+    if (set(folders) != set(PACKAGED_SKILLS)
+            or any(not (folders[name] / "SKILL.md").is_file() for name in PACKAGED_SKILLS)):
         raise DecisionError("incomplete_package")
-    for folder in folders:
-        if (target / folder.name).exists() or (target / folder.name).is_symlink():
+    for name in PACKAGED_SKILLS:
+        if (target / name).exists() or (target / name).is_symlink():
             raise DecisionError("skill_already_exists_install_aborted")
     target.mkdir(parents=True, exist_ok=True)
-    for folder in folders:
-        shutil.copytree(folder, target / folder.name)
-    return [str(target / folder.name) for folder in folders]
+    for name in PACKAGED_SKILLS:
+        shutil.copytree(folders[name], target / name)
+    return [str(target / name) for name in PACKAGED_SKILLS]

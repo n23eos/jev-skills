@@ -1,0 +1,22 @@
+{
+  "comment": {
+    "text": "Please add a regression case for the empty-input branch.",
+    "path": "tests/test_parser.py",
+    "line": 42
+  },
+  "code_excerpt": "def parse(text):\n    if not text:\n        raise ParseError('empty input')",
+  "project_rules": [
+    "Bug fixes include a focused regression test.",
+    "Use the existing unittest suite."
+  ],
+  "actions": [
+    {
+      "id": "add-focused-test",
+      "description": "Add a focused regression test that exercises the existing empty-input behavior."
+    },
+    {
+      "id": "ask-for-scope",
+      "description": "Ask which additional parser variants the reviewer expects the test to cover."
+    }
+  ]
+}

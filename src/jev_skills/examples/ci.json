@@ -1,0 +1,15 @@
+{
+  "failure": {
+    "summary": "The parser unit job fails on the empty-input fixture.",
+    "first_error": "AssertionError: expected ParseError, got ValueError",
+    "repeat_count": 2,
+    "reproduction_target": "the existing empty-input parser unit test",
+    "relevant_changes": [
+      "The parser error conversion was updated."
+    ],
+    "run_evidence": [
+      "Run 1 fails at the same assertion.",
+      "Run 2 fails at the same assertion."
+    ]
+  }
+}

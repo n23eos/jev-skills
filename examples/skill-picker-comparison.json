@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "benchmark": {
+    "name": "Public ordinary-host prompted-choice and Jev skill-picker comparison",
+    "source": "Project-authored public fixture in examples/skill-picker-comparison.json",
+    "authorship": "Synthetic tasks written for this repository. They are not real users or production traffic.",
+    "limitations": "Measures skill choice on a small authored fixture, not downstream task success or production accuracy."
+  },
+  "candidates": [
+    {
+      "id": "python-testing",
+      "name": "Python Testing",
+      "description": "Write and run Python unit and integration tests with unittest or pytest, including regression coverage."
+    },
+    {
+      "id": "tdd-workflow",
+      "name": "TDD Workflow",
+      "description": "Drive a behavior change through a failing test, minimal implementation, and refactoring loop."
+    },
+    {
+      "id": "api-design",
+      "name": "API Design",
+      "description": "Design HTTP APIs, resource contracts, pagination, status codes, and compatibility boundaries."
+    },
+    {
+      "id": "data-validation",
+      "name": "Data Validation",
+      "description": "Validate and normalize JSON, CSV, and structured input with precise schema errors."
+    },
+    {
+      "id": "accessibility",
+      "name": "Accessibility",
+      "description": "Audit and fix keyboard, focus, screen reader, semantic HTML, and contrast issues."
+    },
+    {
+      "id": "frontend-patterns",
+      "name": "Frontend Patterns",
+      "description": "Build maintainable React components, state flows, responsive UI, and browser interactions."
+    },
+    {
+      "id": "security-review",
+      "name": "Security Review",
+      "description": "Review trust boundaries, authentication, authorization, injection risks, and secret handling."
+    },
+    {
+      "id": "documentation",
+      "name": "Documentation",
+      "description": "Write concise developer documentation, examples, migration notes, and command references."
+    }
+  ],
+  "cases": [
+    {
+      "id": "task-01",
+      "request": "Add a regression test for the Python parser bug, then make the smallest fix.",
+      "kind": "overlap",
+      "acceptable": ["python-testing", "tdd-workflow"]
+    },
+    {
+      "id": "task-02",
+      "request": "Спроектируй JSON endpoint: проверь входные поля и верни понятные ошибки схемы.",
+      "kind": "overlap",
+      "acceptable": ["api-design", "data-validation"]
+    },
+    {
+      "id": "task-03",
+      "request": "Fix keyboard focus and screen reader labels in the React account dialog.",
+      "kind": "overlap",
+      "acceptable": ["accessibility"]
+    },
+    {
+      "id": "task-04",
+      "request": "Проверь границы доверия, авторизацию и утечки секретов в новом login flow.",
+      "kind": "direct",
+      "acceptable": ["security-review"]
+    },
+    {
+      "id": "task-05",
+      "request": "Write a short migration guide with copyable CLI examples for the new command.",
+      "kind": "direct",
+      "acceptable": ["documentation"]
+    },
+    {
+      "id": "task-06",
+      "request": "Suggest a vegetarian dinner using rice and mushrooms.",
+      "kind": "negative",
+      "acceptable": ["none"]
+    },
+    {
+      "id": "task-07",
+      "request": "Подбери упражнения для настройки гитары на слух.",
+      "kind": "negative",
+      "acceptable": ["none"]
+    },
+    {
+      "id": "task-08",
+      "request": "Use the second one, but make it shorter.",
+      "kind": "followup",
+      "acceptable": ["followup"]
+    },
+    {
+      "id": "task-09",
+      "request": "Да, возьми предыдущий вариант.",
+      "kind": "followup",
+      "acceptable": ["followup"]
+    }
+  ]
+}

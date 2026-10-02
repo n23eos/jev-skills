@@ -8,12 +8,13 @@ import sys
 
 from .catalog import catalog
 from .installation import install_skills
-from .diagnostics import doctor
+from .diagnostics import doctor, human_report
 from .skill_selection import prepare_skills, attach_selection, load_selected, contextual_followup
 from .profiles import prepare_model_input
 from .hosts import run_helper
-from .core import Client, DecisionError, QUESTIONS, build_request, fallback, number, select, validate_input
+from .core import Client, DecisionError, QUESTIONS, group_requests, fallback, number, select, validate_input
 from .storage import home, record, state, status, toggle
+from .advisory_workflows import prepare_input
 
 
 def emit(value: dict) -> None:
@@ -37,6 +38,8 @@ def parser() -> argparse.ArgumentParser:
     for command in ("enable", "disable"):
         sub.add_parser(command).add_argument("workflow", choices=(*QUESTIONS, "all"))
     sub.add_parser("status")
+    sample = sub.add_parser("example", help="print a packaged public input without network requests")
+    sample.add_argument("workflow", choices=("citation", "ci", "review", "tool", "issue", "value", "eval-gap"))
     inventory = sub.add_parser("catalog")
     inventory.add_argument("--root", action="append", type=Path, required=True)
     inventory.add_argument("--output", type=Path)
@@ -44,9 +47,11 @@ def parser() -> argparse.ArgumentParser:
     setup.add_argument("--agent", choices=("codex", "claude"), required=True)
     setup.add_argument("--dest", type=Path)
     setup.add_argument("--upgrade", action="store_true")
-    diagnose = sub.add_parser("doctor")
+    diagnose = sub.add_parser("doctor", help="check local setup without network requests")
     diagnose.add_argument("--agent", choices=("codex", "claude"))
     diagnose.add_argument("--dest", type=Path)
+    diagnose.add_argument("--format", choices=("json", "human"), default="json",
+                          help="human explanations or backward-compatible JSON (default)")
     for command in ("pick-skill", "route-model"):
         direct = sub.add_parser(command)
         request = direct.add_mutually_exclusive_group(required=True)
@@ -95,8 +100,11 @@ def read_text(filename: str) -> str:
 def main(argv=None) -> int:
     args = parser().parse_args(argv)
     root = home()
+    coverage = None
     try:
-        if args.command == "status":
+        if args.command == "example":
+            emit(json.loads((Path(__file__).parent / "examples" / (args.workflow + ".json")).read_text(encoding="utf-8")))
+        elif args.command == "status":
             emit(status(root))
         elif args.command in {"enable", "disable"}:
             emit({"enabled": toggle(root, args.workflow, args.command == "enable"),
@@ -104,7 +112,11 @@ def main(argv=None) -> int:
         elif args.command == "install":
             emit(install_skills(args.agent, args.dest, upgrade=args.upgrade))
         elif args.command == "doctor":
-            emit(doctor(args.agent, args.dest))
+            result = doctor(args.agent, args.dest)
+            if args.format == "human":
+                print(human_report(result))
+            else:
+                emit(result)
         elif args.command == "integrate":
             from .integration import integrate
             emit(integrate(args.agent, args.project, args.root, profile=args.profile,
@@ -140,15 +152,17 @@ def main(argv=None) -> int:
                     if (args.live or args.automatic) and not args.reviewed_catalog:
                         emit(fallback("catalog_review_required"))
                         return 0
-                    data, mapping = prepare_skills(request, args.root, exclude=args.exclude)
+                    coverage = {}
+                    data, mapping = prepare_skills(request, args.root, exclude=args.exclude, coverage=coverage)
                     if args.catalog_digest:
                         from .integration import reviewed_digest
                         if args.catalog_digest != reviewed_digest(data["candidates"]):
-                            emit(fallback("catalog_changed_review_required"))
+                            emit({**fallback("catalog_changed_review_required"), "catalog_coverage": coverage})
                             return 0
                 else:
                     data, mapping = prepare_model_input(request, json.loads(read_text(str(args.profile))))
-            data = validate_input(data)
+            prepared_data = prepare_input(args.workflow, data)
+            data = validate_input(prepared_data)
             number(args.timeout, 0.05, 60)
             number(args.threshold, 0, 1)
             if args.command == "route-model" and args.execute:
@@ -156,13 +170,16 @@ def main(argv=None) -> int:
             if not 2 <= args.batch_size <= 254:
                 raise DecisionError("invalid_batch_size")
             if not args.live and not args.automatic:
-                groups = [data["candidates"][i:i + args.batch_size] for i in range(0, len(data["candidates"]), args.batch_size)]
-                emit({"mode": "dry_run", "network": False, "requests": [build_request(args.workflow, data, group) for group in groups], "note": "Additional final rounds depend on group winners."})
+                result = {"mode": "dry_run", "network": False, "requests": group_requests(args.workflow, data, args.batch_size), "note": "Additional final rounds depend on group winners."}
+                if coverage is not None:
+                    result["catalog_coverage"] = coverage
+                emit(result)
                 return 0
-            result = select(args.workflow, data, Client(), timeout=args.timeout, threshold=args.threshold, batch_size=args.batch_size)
+            result = select(args.workflow, prepared_data, Client(), timeout=args.timeout, threshold=args.threshold, batch_size=args.batch_size)
             result["metrics_saved"] = record(root, result)
             if args.command == "pick-skill":
                 result = attach_selection(result, mapping, agent=args.agent)
+                result["catalog_coverage"] = coverage
                 if args.show_skill and result.get("route") == "recommendation":
                     result["skill_body"] = load_selected(result, mapping)
             elif args.command == "route-model" and args.execute and result.get("route") == "recommendation":
@@ -174,5 +191,8 @@ def main(argv=None) -> int:
     except (OSError, ValueError, TypeError, OverflowError, RecursionError) as error:
         # Bad input and local I/O failures must not prevent the host handling its task.
         message = str(error) if isinstance(error, DecisionError) else "invalid_input_or_local_io"
-        emit(fallback(message))
+        result = fallback(message)
+        if coverage is not None:
+            result["catalog_coverage"] = coverage
+        emit(result)
         return 0 if args.command in {"decide", "pick-skill", "route-model"} else 2

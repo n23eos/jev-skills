@@ -1,0 +1,22 @@
+{
+  "evaluation": {
+    "goal": "Check whether parser error handling is covered by behavioral tests.",
+    "evidence": [
+      "Valid input and malformed token cases are covered."
+    ],
+    "coverage": [
+      "Successful parsing",
+      "Malformed token handling"
+    ]
+  },
+  "gaps": [
+    {
+      "id": "empty-input",
+      "description": "No evaluation case covers empty input at the public parser boundary."
+    },
+    {
+      "id": "large-input",
+      "description": "No evaluation case covers inputs near the documented size limit."
+    }
+  ]
+}

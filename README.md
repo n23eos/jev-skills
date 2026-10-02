@@ -2,7 +2,9 @@
 
 ![Jev Skills: routing coding tasks across skills and models](assets/jev-skills-cover.png)
 
-Seven installable skills for Claude Code and Codex. Ask your agent to pick a relevant skill, choose a suitable model, or decide where to investigate and test first. Jev makes a small, bounded choice; your coding agent does the work.
+Fourteen installable skills for Claude Code and Codex. Ask your agent to pick a relevant skill, choose a suitable model, or decide where to investigate and test first. Jev makes a small, bounded choice; your coding agent does the work.
+
+Start with skill picking if you have several installed coding skills with overlapping purposes. The picker helps identify one to read; your agent still checks whether it fits and performs the task. For a small, obvious choice, use the agent's normal judgment.
 
 Use this when several skills or next steps plausibly fit and choosing requires judgment. Skip it when the answer is obvious, the request is private or a contextual follow-up, or a project rule already determines the next step. These skills do not prove better decisions, lower cost, or faster work; evaluate them on your own tasks before adopting automatic use.
 
@@ -16,12 +18,14 @@ With [uv](https://docs.astral.sh/uv/getting-started/installation/), Git, and cur
 uv tool install 'git+https://github.com/n23eos/jev-skills.git'
 jev-skills install --agent codex
 # Or: jev-skills install --agent claude
-jev-skills doctor
+jev-skills doctor --format human
 ```
 
 If the command is not found, run `uv tool update-shell`, then open a new terminal. No uv? Use the [isolated Python installation](docs/getting-started.md). The CLI needs Python 3.10 or newer; uv can provision a compatible Python. Installation does not enable automatic network calls.
 
 Before a live decision, supply your [TypeSafe API key](https://docs.typesafe.ai/api.md) as `TYPESAFE_API_KEY` in the environment that starts your coding agent. Do not paste the key into chat. `jev-skills doctor` checks whether it is present without displaying it. Your Codex or Claude subscription is separate from TypeSafe access.
+
+`doctor --format human` explains missing setup steps and distinguishes CLI helper availability from installed skills. It does not contact TypeSafe or verify host login or native skill discovery. Plain `doctor` and `doctor --format json` retain the structured output used by agents.
 
 Restart your coding agent after installation. Then paste one of these:
 
@@ -64,9 +68,11 @@ jev-skills pick-skill --root ~/.agents/skills --request 'Review a React form for
 
 The result includes an exact local `selected_skill.path` and `next_action: read_skill_then_apply`, or a fallback. Paths and skill bodies are not uploaded. `--show-skill` additionally reads the selected file locally after verifying it has not changed. The agent must read the complete skill and respect its instructions before applying it.
 
+Preview and selection also include local `catalog_coverage`: eligible and excluded counts, skipped files with reasons, and whether any read/parse failures occurred. An incomplete catalog can still produce a recommendation, but it may have missed the most relevant skill. Fix unsupported or unreadable files and retry as appropriate. Coverage paths stay local and must not be published from private catalogs.
+
 For the other bounded selectors, the agent can prepare the following lower-level input for you:
 
-Use a JSON file with a task request, a finite set of candidates, and optional JSON context. Candidate IDs should be stable and descriptions should explain distinctions relevant to the task. For `model`, candidates may also have a `size` (`tiny`, `everyday`, `large`, or `hardest`) for local usage accounting. Other candidate fields are not used for selection.
+Use a JSON file with a task request, a finite set of candidates, and optional JSON context. Candidate IDs should be stable and descriptions should explain distinctions relevant to the task. For `model`, candidates may also have a `size` (`tiny`, `everyday`, `large`, or `hardest`) for local usage accounting. Other candidate fields are not used for selection. The seven new workflows use structured scenario inputs to verify evidence and generate eligible candidates; start with `jev-skills example WORKFLOW` and the installed skill instructions.
 
 ```json
 {
@@ -84,9 +90,40 @@ jev-skills decide tests --input examples/tests.json
 jev-skills decide tests --input examples/tests.json --live
 ```
 
-The first command is an offline dry-run. It prints `mode: dry_run`, `network: false`, and the request payload(s) it would send; it has no recommendation. `--live` starts an explicit one-shot HTTPS decision session and requires `TYPESAFE_API_KEY` in the environment. Do not put the key in an input file or a CLI argument. The CLI does not run the chosen test. See the [six bounded uses](docs/use-cases.md) and `examples/` for synthetic inputs. The model example uses fictional IDs; replace them with actual host model IDs before a real model decision.
+The first command is an offline dry-run. It prints `mode: dry_run`, `network: false`, and the request payload(s) it would send; it has no recommendation. `--live` starts an explicit one-shot HTTPS decision session and requires `TYPESAFE_API_KEY` in the environment. Do not put the key in an input file or a CLI argument. The CLI does not run the chosen test. See the [bounded uses](docs/use-cases.md) and `examples/` for synthetic inputs. The model example uses fictional IDs; replace them with actual host model IDs before a real model decision.
 
-An attempted live or enabled automatic selection reports `route` (`recommendation` or `fallback`), `selected` (an input ID or `null`), `confidence`, and `usage`/`calls` accounting. Immediate local fallbacks may have fewer fields. A fallback means the agent should continue with its normal process. Neither a recommendation nor a confidence value proves correctness. In particular, a selected first test never replaces other mandatory tests. `--timeout SECONDS` limits a decision session; failures and timeouts fall back. The available workflows are `model`, `skill`, `context`, `tests`, `bug`, and `plan`.
+An attempted live or enabled automatic selection reports `route` (`recommendation` or `fallback`), `selected` (an input ID or `null`), `confidence`, and `usage`/`calls` accounting. Immediate local fallbacks may have fewer fields. A fallback means the agent should continue with its normal process. Neither a recommendation nor a confidence value proves correctness. In particular, a selected first test never replaces other mandatory tests. `--timeout SECONDS` limits a decision session; failures and timeouts fall back. The available workflows are `model`, `skill`, `context`, `tests`, `bug`, `plan`, `citation`, `ci`, `review`, `tool`, `issue`, `value`, and `eval-gap`.
+
+## New practical workflows
+
+Start with a concrete question, not automatic routing. For Codex, paste:
+
+```text
+$jev-citation-checker Check whether this public source supports my claim. Inspect the source and show the relevant passage. Prepare an offline preview first; keep automatic use off.
+```
+
+Or ask `$jev-ci-triage` to inspect a failed CI step and recommend the next diagnostic check. For Claude Code, replace `$` with `/`. The agent prepares the input; you do not need to write JSON. One live decision requires explicit opt-in and sanitized public evidence.
+
+| Skill | User result |
+| --- | --- |
+| `jev-citation-checker` | Source-scoped support, contradiction or insufficient evidence, with the original passage for verification |
+| `jev-ci-triage` | Next diagnostic check for failed CI, without pretending to know the cause |
+| `jev-review-comment-triage` | Next action on one review comment, before making unnecessary changes |
+| `jev-tool-picker` | One available read-only tool to consider for a task |
+| `jev-issue-next-step` | Missing evidence or next investigation for an issue |
+| `jev-value-picker` | An exact existing parsed value, copied locally rather than generated |
+| `jev-eval-gap-picker` | One observed failure to consider for a new evaluation |
+
+Try an installed public example without cloning this repository:
+
+```sh
+jev-skills example citation > citation.json
+jev-skills decide citation --input citation.json
+# After reviewing the public input and opting in:
+# jev-skills decide citation --input citation.json --live
+```
+
+`example` works for all seven new workflows. Every preview is offline. Fallbacks return the task to the agent. These workflows are initial implementations, not measured accuracy or time improvements. See [workflow details and verification criteria](docs/new-workflows.md).
 
 ## Network and control
 
@@ -109,7 +146,9 @@ TypeSafe Choice supports at most 255 options; this CLI reserves one for `none`, 
 
 ## Development
 
-The [v0.2 verification](docs/verification-v0.2.md) covers clean installation, a real catalog selection, helper boundaries, and a larger 30-skill synthetic comparison with a lexical baseline. The [first live evaluation](docs/evaluation.md) retains its 22 API calls and 3 bypass probes, including five low-confidence fallbacks. These are synthetic examples, not production benchmarks. A short [launch draft](docs/launch.md) is also available.
+The [v0.3 verification](docs/verification-v0.3.md) covers the fourteen-skill package, structured workflows and safe upgrades. The [v0.2 verification](docs/verification-v0.2.md) covers clean installation, a real catalog selection, helper boundaries, and a larger 30-skill synthetic comparison with a lexical baseline. The [first live evaluation](docs/evaluation.md) retains its 22 API calls and 3 bypass probes, including five low-confidence fallbacks. These are synthetic examples, not production benchmarks. A short [launch draft](docs/launch.md) is also available.
+
+The [paired picker comparison](docs/skill-picker-comparison.md) prepares identical public tasks for ordinary-agent and Jev choices and compares explicitly captured results. Preparation is offline and never starts a helper. Missing captures remain unmeasured. This measures skill selection, not success at completing the coding task.
 
 Run network-free checks with the project's test runner:
 

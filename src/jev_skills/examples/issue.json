@@ -1,0 +1,21 @@
+{
+  "issue": {
+    "title": "Empty input returns the wrong exception type",
+    "summary": "A focused unit test reproduces the mismatch.",
+    "state": "reproduced",
+    "blockers": [],
+    "evidence": [
+      "The unit test expects ParseError and observes ValueError."
+    ]
+  },
+  "actions": [
+    {
+      "id": "trace-error-conversion",
+      "description": "Inspect the parser boundary that converts internal errors to public exceptions."
+    },
+    {
+      "id": "request-more-reproduction",
+      "description": "Request another reproduction before inspecting implementation code."
+    }
+  ]
+}

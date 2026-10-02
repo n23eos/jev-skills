@@ -204,6 +204,43 @@ class DirectCliTests(unittest.TestCase):
         self.assertEqual(value["route"], "recommendation")
         helper.assert_not_called()
 
+    def test_picker_coverage_is_visible_but_never_uploaded(self):
+        bad = self.skills / "invalid-skill"
+        bad.mkdir()
+        (bad / "SKILL.md").write_text("---\nname: invalid\ndescription: [unsupported]\n---\nPRIVATE_WARNING_BODY")
+        preview = self.run_cli(*self.skill_args())
+        self.assertFalse(preview["catalog_coverage"]["complete"])
+        self.assertEqual(preview["catalog_coverage"]["eligible_count"], 1)
+        self.assertEqual(preview["catalog_coverage"]["skipped"][0]["reason"], "unsupported_skill_metadata")
+        self.assertNotIn(str(bad), json.dumps(preview["requests"]))
+        for choice in ("plain-text", "none"):
+            with self.subTest(choice=choice), self.client(choice):
+                value = self.run_cli(*self.skill_args("--live", "--reviewed-catalog"))
+            self.assertEqual(len(value["catalog_coverage"]["skipped"]), 1)
+        wire = json.dumps(self.payloads)
+        self.assertNotIn(str(bad), wire)
+        self.assertNotIn("PRIVATE_WARNING_BODY", wire)
+        self.assertNotIn("catalog_coverage", wire)
+
+    def test_empty_eligible_catalog_preserves_skipped_warnings(self):
+        path = self.skills / "plain-text" / "SKILL.md"
+        path.write_text("---\nname: plain-text\ndescription: [unsupported]\n---\n")
+        with patch.object(cli, "Client", side_effect=AssertionError("network")):
+            value = self.run_cli(*self.skill_args("--live", "--reviewed-catalog"))
+        self.assertEqual(value["reason"], "no_eligible_skills")
+        self.assertEqual(value["catalog_coverage"]["eligible_count"], 0)
+        self.assertEqual(len(value["catalog_coverage"]["skipped"]), 1)
+
+    def test_short_followups_do_not_read_catalog_or_profile(self):
+        for text in ("the second one", "давай второй", "продолжай"):
+            for command, option in (("pick-skill", "--root"), ("route-model", "--profile")):
+                with self.subTest(text=text, command=command), \
+                        patch.object(cli, "prepare_skills", side_effect=AssertionError("scan")), \
+                        patch.object(cli, "prepare_model_input", side_effect=AssertionError("profile")), \
+                        patch.object(cli, "Client", side_effect=AssertionError("network")):
+                    value = self.run_cli(command, "--request", text, option, "absent", "--live")
+                self.assertEqual(value["reason"], "contextual_follow_up")
+
 
 if __name__ == "__main__":
     unittest.main()

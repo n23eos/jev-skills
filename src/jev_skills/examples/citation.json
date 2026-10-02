@@ -1,0 +1,9 @@
+{
+  "claim": "The fictional parser rejects empty input.",
+  "source": {
+    "id": "parser-guide",
+    "context": "Excerpt from a fictional parser guide.",
+    "excerpt": "Empty input is rejected with ParseError before tokenization starts."
+  },
+  "quote": "Empty input is rejected with ParseError"
+}

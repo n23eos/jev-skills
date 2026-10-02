@@ -11,6 +11,11 @@ import uuid
 
 from . import __version__
 from .core import DecisionError
+from .skill_registry import (
+    HISTORICAL_SKILLS,
+    PACKAGED_SKILLS,
+    SUPPORTED_MANIFEST_SKILL_SETS,
+)
 
 
 MANIFEST = ".jev-skills-install.json"
@@ -47,10 +52,12 @@ def _files(folder: Path) -> dict[str, str]:
 
 def packaged_skills() -> dict[str, dict[str, str]]:
     root = Path(__file__).parent / "skills"
-    folders = sorted(path for path in root.iterdir() if path.is_dir() and not path.is_symlink())
-    if len(folders) != 7 or any(not (folder / "SKILL.md").is_file() for folder in folders):
+    folders = {path.name: path for path in root.iterdir()
+               if path.is_dir() and not path.is_symlink()}
+    if (set(folders) != set(PACKAGED_SKILLS)
+            or any(not (folders[name] / "SKILL.md").is_file() for name in PACKAGED_SKILLS)):
         raise DecisionError("incomplete_package")
-    return {folder.name: _files(folder) for folder in folders}
+    return {name: _files(folders[name]) for name in PACKAGED_SKILLS}
 
 
 def _safe_relative(value: str) -> bool:
@@ -92,7 +99,8 @@ def read_manifest(target: Path, agent: str, names: set[str]) -> dict | None:
     if (not isinstance(value, dict) or value.get("schema") != 1
             or value.get("agent") != agent or not isinstance(value.get("package_version"), str)
             or not isinstance(value.get("skills"), dict)
-            or set(value["skills"]) != names):
+            or names != set(PACKAGED_SKILLS)
+            or frozenset(value["skills"]) not in SUPPORTED_MANIFEST_SKILL_SETS):
         raise DecisionError("invalid_install_manifest")
     for name, files in value["skills"].items():
         if not isinstance(files, dict) or "SKILL.md" not in files:
@@ -114,6 +122,7 @@ def inspect_install(agent: str, destination: Path | None = None) -> dict:
         return {"status": "invalid_manifest", "manifest": True, "missing": [],
                 "modified": [], "extra_count": 0, "installed_count": 0}
     missing, modified, extra = [], [], []
+    owned = manifest["skills"] if manifest else {}
     for name in sorted(names):
         folder = target / name
         if folder.is_symlink():
@@ -122,22 +131,26 @@ def inspect_install(agent: str, destination: Path | None = None) -> dict:
         if not folder.exists():
             missing.append(name)
             continue
+        if manifest and name not in owned:
+            modified.append(name)
+            continue
         try:
             current = _files(folder)
         except DecisionError:
             modified.append(name)
             continue
-        expected = manifest["skills"][name] if manifest else source[name]
+        expected = owned[name] if manifest else source[name]
         if any(current.get(path) != digest for path, digest in expected.items()):
             modified.append(name)
         extra.extend(f"{name}/{path}" for path in current.keys() - expected.keys())
     status = "managed" if manifest else "unmanaged"
-    if missing or modified:
+    missing_owned = set(missing) & set(owned)
+    if modified or missing_owned or (missing and not manifest):
         status = "incomplete" if manifest else "unmanaged"
-    elif manifest and manifest["skills"] != source:
+    elif manifest and owned != source:
         status = "upgrade_available"
     return {"status": status, "manifest": manifest is not None, "missing": missing,
-            "modified": modified, "extra_count": len(extra), "installed_count": 7 - len(missing),
+            "modified": modified, "extra_count": len(extra), "installed_count": len(names) - len(missing),
             "package_version": manifest["package_version"] if manifest else None}
 
 
@@ -147,16 +160,29 @@ def _preflight(target: Path, source: dict, manifest: dict | None,
     if manifest is None:
         if not any(present):
             return "installed", None, False
+        if upgrade:
+            historical_names = set(HISTORICAL_SKILLS)
+            if (all((target / name).exists() and not (target / name).is_symlink()
+                    for name in historical_names)
+                    and not any((target / name).exists() or (target / name).is_symlink()
+                                for name in set(source) - historical_names)):
+                current = {name: _files(target / name) for name in historical_names}
+                legacy = _legacy_files(historical_names)
+            else:
+                current = None
+                legacy = None
+            if current == legacy and legacy is not None:
+                return "upgraded", legacy, True
         if not all(present):
             raise DecisionError("unowned_skill_conflict")
         current = {name: _files(target / name) for name in source}
         if current == source:
             return "adopted", None, False
-        if upgrade:
-            legacy = _legacy_files(set(source))
-            if current == legacy:
-                return "upgraded", legacy, True
         raise DecisionError("unowned_skill_conflict")
+    owned_names = set(manifest["skills"])
+    for name in set(source) - owned_names:
+        if (target / name).exists() or (target / name).is_symlink():
+            raise DecisionError("unowned_skill_conflict")
     for name, installed in manifest["skills"].items():
         current = _files(target / name)
         if any(current.get(path) != digest for path, digest in installed.items()):
@@ -164,7 +190,7 @@ def _preflight(target: Path, source: dict, manifest: dict | None,
         # An update must never replace a user-added path with a new packaged file.
         if (current.keys() - installed.keys()) & source[name].keys():
             raise DecisionError("unowned_skill_conflict")
-    if all(manifest["skills"][name] == source[name] for name in source):
+    if owned_names == set(source) and manifest["skills"] == source:
         return "unchanged", manifest["skills"], False
     if not upgrade:
         raise DecisionError("upgrade_required")
@@ -193,7 +219,7 @@ def install_skills(agent: str, destination: Path | None = None, upgrade: bool = 
         if status != "adopted":
             for name in source:
                 staged = stage / name
-                if status == "upgraded":
+                if status == "upgraded" and name in owned:
                     shutil.copytree(target / name, staged, symlinks=True)
                     staged_hashes = _files(staged)
                     if any(staged_hashes.get(path) != digest
@@ -213,7 +239,7 @@ def install_skills(agent: str, destination: Path | None = None, upgrade: bool = 
         (stage / MANIFEST).write_text(json.dumps(new_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         if status == "upgraded":
             backup.mkdir()
-            for name in [*source, *([] if legacy_migration else [MANIFEST])]:
+            for name in [*owned, *([] if legacy_migration else [MANIFEST])]:
                 os.replace(target / name, backup / name)
                 replaced.append(name)
         for name in ([*source] if status != "adopted" else []) + [MANIFEST]:

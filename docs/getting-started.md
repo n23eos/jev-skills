@@ -9,10 +9,12 @@ uv tool install 'git+https://github.com/n23eos/jev-skills.git'
 jev-skills install --agent codex
 # For Claude Code instead:
 # jev-skills install --agent claude
-jev-skills doctor
+jev-skills doctor --format human
 ```
 
 Both hosts can be installed on the same machine by running both install commands. Restart the host to discover the new skills. In Codex, invoke `$jev-controls`; in Claude Code, invoke `/jev-controls`. Ask it to check the installation. This does not need an API key or make a network request.
+
+Read the `Next:` lines in the human report. A missing TypeSafe key prevents live selection but does not prevent installation or offline preview. A missing host CLI only affects CLI helper execution; a desktop host can still load skills. The report does not verify login or native discovery. Keep plain `doctor` or `--format json` for machine-readable integrations.
 
 Without uv, clone the repository and use a virtual environment:
 
@@ -42,6 +44,8 @@ For Claude Code, replace `$` with `/`. The skill asks the agent to assemble cand
 
 For skill picking, invoke `jev-skill-picker` with a task and installed skill roots. Your agent reviews the catalog metadata before the first live upload, calls `pick-skill`, reads the selected skill in full, and applies it only when appropriate. This is not a replacement for the host's native skill discovery.
 
+Review `catalog_coverage` in previews and completed selections. `complete: false` means some files could not be read or parsed, not that no skill applies. The skipped paths/reasons are local only, including when the picker returns `no_eligible_skills`. Explicitly excluded skills do not expose their descriptions in this report. Do not upload the whole CLI output from a private catalog.
+
 ## Update safely
 
 ```sh
@@ -51,7 +55,7 @@ jev-skills install --agent codex --upgrade
 jev-skills doctor
 ```
 
-Re-running the same installation is harmless. Upgrades verify ownership hashes before changing anything and retain an installation backup. The published v0.1 installation is recognized by its seven original file hashes and migrates with `--upgrade` even though it had no ownership manifest. Locally edited or extra untracked files block that migration; they are never silently overwritten. Other untracked installations are adopted only on an exact current-package match. For a conflict, keep your backup and review the changes manually or choose a fresh `--dest`. The installer never guesses whether your edits are disposable.
+Re-running the same installation is harmless. Version 0.3 contains fourteen skills. Managed seven-skill v0.2 installations expand with `--upgrade`; a collision in a new skill directory blocks the operation before replacing owned files. Upgrades verify ownership hashes before changing anything and retain an installation backup. The published v0.1 installation is recognized by its seven original file hashes and migrates with `--upgrade` even though it had no ownership manifest. Locally edited or extra untracked files block that migration; they are never silently overwritten. Other untracked installations are adopted only on an exact current-package match. For a conflict, keep your backup and review the changes manually or choose a fresh `--dest`. The installer never guesses whether your edits are disposable.
 
 ## Optional automatic project use
 

@@ -175,19 +175,19 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual(result["candidates"][0]["description"], "First line. Second line remains here.")
             self.assertEqual(result["skipped"], [])
 
-    def test_install_seven_skills_both_agents_without_overwrite(self):
+    def test_install_bundled_skills_both_agents_without_overwrite(self):
         with tempfile.TemporaryDirectory() as directory:
             for agent in ("codex", "claude"):
                 target = Path(directory) / agent / "skills"
                 paths = install(agent, target)
-                self.assertEqual(len(paths), 7)
+                self.assertEqual(len(paths), 14)
                 self.assertTrue(all((Path(path) / "SKILL.md").is_file() for path in paths))
                 sentinel = Path(paths[0]) / "keep.txt"
                 sentinel.write_text("preserve", encoding="utf-8")
                 with self.assertRaises(DecisionError):
                     install(agent, target)
                 self.assertEqual(sentinel.read_text(encoding="utf-8"), "preserve")
-                self.assertEqual(len(list(target.iterdir())), 7)
+                self.assertEqual(len(list(target.iterdir())), 14)
 
 
 if __name__ == "__main__":

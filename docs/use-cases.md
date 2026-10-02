@@ -1,6 +1,6 @@
-# Bounded coding decisions
+# Bounded decisions
 
-Each workflow accepts `{"request":"...","candidates":[{"id":"...","description":"..."}],"context":{}}` and returns at most one advisory candidate ID or a fallback. Build a relevant, sanitized shortlist first; an option missing from it cannot be selected. See `examples/` for input files and the [README](../README.md) for execution modes.
+Each of the six original workflows accepts `{"request":"...","candidates":[{"id":"...","description":"..."}],"context":{}}` and returns at most one advisory candidate ID or a fallback. Build a relevant, sanitized shortlist first; an option missing from it cannot be selected. See `examples/` for input files and the [README](../README.md) for execution modes.
 
 | Workflow and skill | What to submit | What selection means |
 | --- | --- | --- |
@@ -15,4 +15,6 @@ For example, after identifying a changed parser, submit the real parser unit sui
 
 For `model`, map available host models to at most four useful size choices (`tiny`, `everyday`, `large`, `hardest`) using the host's actual model IDs. Optional `size` is only for local usage counts, not a feature in the TypeSafe choice and not a substitute for a useful description. If the host supports delegation, give the selected model a bounded, authorized task and report the model actually used; otherwise use normal host behavior. Never say the parent conversation switched models.
 
-These six initial uses adapt the general [intent-routing pattern](https://docs.typesafe.ai/patterns/intent-routing.md) to explicit candidates. The [reranking cookbook](https://docs.typesafe.ai/cookbooks/rerank_typesafe.md) performs per-query-candidate relevance scoring and measures dataset outcomes; this pack instead uses a bounded Choice for one next item. [Score](https://docs.typesafe.ai/primitives/score.md) and [composite scoring](https://docs.typesafe.ai/patterns/composite-scoring.md) may inform future ranking or multi-criterion designs but are not implemented here. Do not transfer accuracy figures from those examples to this pack.
+The six original uses adapt the general [intent-routing pattern](https://docs.typesafe.ai/patterns/intent-routing.md) to explicit candidates. The [reranking cookbook](https://docs.typesafe.ai/cookbooks/rerank_typesafe.md) performs per-query-candidate relevance scoring and measures dataset outcomes; this pack instead uses a bounded Choice for one next item. [Score](https://docs.typesafe.ai/primitives/score.md) and [composite scoring](https://docs.typesafe.ai/patterns/composite-scoring.md) may inform future ranking or multi-criterion designs but are not implemented here. Do not transfer accuracy figures from those examples to this pack.
+
+Version 0.3 also includes source checking, CI diagnosis, review-comment triage, tool choice, issue next steps, exact value choice and evaluation-gap prioritization. See [new workflows](new-workflows.md) for the distinctions, examples and concrete usefulness criteria.

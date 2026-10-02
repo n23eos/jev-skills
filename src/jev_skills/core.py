@@ -12,6 +12,8 @@ import threading
 import time
 from typing import Any
 
+from .advisory_workflows import QUESTIONS as ADVISORY_QUESTIONS, prepare_input, attach_result
+
 API_URL = "https://api.typesafe.ai/v1/systemone"
 MODEL = "jev-1.13.0"
 MAX_CANDIDATES = 2048
@@ -26,6 +28,7 @@ QUESTIONS = {
     "bug": "Which ONE component is the best starting point for investigating this bug, based on the supplied evidence? This is a hypothesis, not a confirmed root cause.",
     "plan": "Which ONE supplied implementation plan best meets the explicit requirements and constraints? Prefer the smallest adequate plan with concrete verification. Select none if evidence is insufficient or no plan meets the constraints.",
 }
+QUESTIONS.update(ADVISORY_QUESTIONS)
 
 
 class DecisionError(ValueError):
@@ -93,6 +96,38 @@ def build_request(workflow: str, data: dict, candidates: list[dict]) -> dict:
     if len(json.dumps(payload, allow_nan=False).encode()) > MAX_PAYLOAD_BYTES:
         raise DecisionError("payload_too_large")
     return payload
+
+
+def group_requests(workflow: str, data: dict, batch_size: int) -> list[dict]:
+    """Build deterministic, size-bounded payloads from validated input."""
+    if type(batch_size) is not int or not 2 <= batch_size <= 254:
+        raise DecisionError("invalid_batch_size")
+    payloads = []
+    group = []
+    group_payload = None
+    for entry in data["candidates"]:
+        candidate_group = group + [entry]
+        if len(candidate_group) > batch_size:
+            payloads.append(group_payload)
+            group = [entry]
+            group_payload = build_request(workflow, data, group)
+            continue
+        try:
+            candidate_payload = build_request(workflow, data, candidate_group)
+        except DecisionError as error:
+            if str(error) != "payload_too_large" or not group:
+                raise
+            payloads.append(group_payload)
+            group = [entry]
+            group_payload = build_request(workflow, data, group)
+        else:
+            group = candidate_group
+            group_payload = candidate_payload
+    if group_payload is not None:
+        payloads.append(group_payload)
+    if len(data["candidates"]) > 1 and len(payloads) == len(data["candidates"]):
+        raise DecisionError("payload_too_large")
+    return payloads
 
 
 def validate_response(value: Any, options: set[str]) -> dict:
@@ -207,17 +242,18 @@ def select(workflow: str, data: dict, client: Client, *, timeout: float = 3.0,
     if type(batch_size) is not int or not 2 <= batch_size <= 254:
         raise DecisionError("invalid_batch_size")
     result = fallback("unknown_error")
+    prepared_data = None
     try:
-        data = validate_input(data)
+        prepared_data = prepare_input(workflow, data)
+        data = validate_input(prepared_data)
         entries = data["candidates"]
         # Every round shrinks the candidate set. Pool size and total input are bounded.
         while True:
-            groups = [entries[index:index + batch_size] for index in range(0, len(entries), batch_size)]
-            payloads = [build_request(workflow, data, group) for group in groups]
-            if len(groups) == 1:
+            payloads = group_requests(workflow, {**data, "candidates": entries}, batch_size)
+            if len(payloads) == 1:
                 decisions = [client.evaluate(payloads[0], deadline)]
             else:
-                with concurrent.futures.ThreadPoolExecutor(max_workers=min(4, len(groups))) as executor:
+                with concurrent.futures.ThreadPoolExecutor(max_workers=min(4, len(payloads))) as executor:
                     decisions = list(executor.map(lambda payload: client.evaluate(payload, deadline), payloads))
             if time.monotonic() > deadline:
                 raise DecisionError("deadline_exceeded")
@@ -228,13 +264,15 @@ def select(workflow: str, data: dict, client: Client, *, timeout: float = 3.0,
             if not selected:
                 result = {**fallback("none_selected"), "confidence": min(item["confidence"] for item in decisions)}
                 break
-            if len(groups) == 1:
+            if len(payloads) == 1:
                 final = decisions[0]
                 result = {"route": "recommendation", "selected": final["selected"], "confidence": final["confidence"], "reason": None}
                 break
             entries = [entry for entry in entries if entry["id"] in selected]
     except (DecisionError, OSError, ValueError, TypeError, KeyError, OverflowError, RecursionError) as error:
         result = fallback(str(error) if isinstance(error, DecisionError) else "evaluation_failed")
+    if prepared_data is not None:
+        result = attach_result(workflow, prepared_data, result)
     result.update(client.stats())
     result["elapsed_ms"] = round((time.monotonic() - start) * 1000)
     result["workflow"] = workflow

@@ -28,5 +28,12 @@ jobs:
           jev-skills install --agent codex --dest "$RUNNER_TEMP/jev-codex-skills"
           jev-skills install --agent claude --dest "$RUNNER_TEMP/jev-claude-skills"
           jev-skills install --agent codex --dest "$RUNNER_TEMP/jev-codex-skills"
-          jev-skills doctor --agent codex --dest "$RUNNER_TEMP/jev-codex-skills"
+          jev-skills doctor --agent codex --dest "$RUNNER_TEMP/jev-codex-skills" --format human
           jev-skills pick-skill --root "$RUNNER_TEMP/jev-codex-skills" --request 'Choose the first test target'
+      - name: Packaged public workflow examples
+        run: |
+          for workflow in citation ci review tool issue value eval-gap; do
+            jev-skills example "$workflow" > "$RUNNER_TEMP/$workflow.json"
+            jev-skills decide "$workflow" --input "$RUNNER_TEMP/$workflow.json" > "$RUNNER_TEMP/$workflow-preview.json"
+            python -c 'import json,sys; r=json.load(open(sys.argv[1])); assert r["mode"] == "dry_run" and r["network"] is False' "$RUNNER_TEMP/$workflow-preview.json"
+          done

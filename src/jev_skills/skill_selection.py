@@ -11,25 +11,38 @@ from .core import DecisionError, validate_input
 
 
 def prepare_skills(request: str, roots: list[Path], exclude: list[str] = (),
-                   allowed_ids: set[str] | None = None) -> tuple[dict, dict]:
+                   allowed_ids: set[str] | None = None,
+                   coverage: dict | None = None) -> tuple[dict, dict]:
     """Build typed candidate input and a separate, local identity map."""
     inventory = catalog(roots)
     excluded = {value.casefold() for value in exclude} | {"jev-skill-picker"}
+    skipped = [dict(item) for item in inventory["skipped"]
+               if Path(item["path"]).parent.name.casefold() not in excluded]
+    excluded_count = len(inventory["skipped"]) - len(skipped)
     candidates, mapping = [], {}
     for entry in inventory["candidates"]:
         if entry["id"].casefold() in excluded or entry["name"].casefold() in excluded:
+            excluded_count += 1
             continue
         if allowed_ids is not None and entry["id"] not in allowed_ids:
+            excluded_count += 1
             continue
         path = Path(entry["path"])
         try:
-            _, _, raw = _metadata(path)
-        except (OSError, ValueError):
+            name, description, raw = _metadata(path)
+            if name != entry["name"] or description != entry["description"]:
+                raise DecisionError("catalog_metadata_changed")
+        except (OSError, ValueError) as error:
+            skipped.append({"path": str(path), "reason": str(error) if isinstance(error, DecisionError) else "unreadable_skill"})
             continue
         identifier = entry["id"]
         candidates.append({"id": identifier, "description": entry["description"]})
         mapping[identifier] = {"path": str(path), "name": entry["name"],
                                "size": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
+    if coverage is not None:
+        coverage.update({"eligible_count": len(candidates), "excluded_count": excluded_count,
+                         "skipped": skipped, "complete": not skipped,
+                         "note": "Local catalog coverage only. Skipped paths and reasons are not sent to Jev; do not publish private paths."})
     if not candidates:
         raise DecisionError("no_eligible_skills")
     # validate_input intentionally drops all local metadata before core.select.
@@ -90,6 +103,10 @@ def contextual_followup(request: str) -> bool:
     if re.match(r"^(?:fix|debug|translate|write|create|implement|исправь|переведи|напиши|создай)\s+", text):
         return False
     if re.fullmatch(r"(?:yes|yeah|yep|no|ok|okay|sure|да|нет|ага|угу|ок|хорошо)[.!?\s]*", text):
+        return True
+    if re.fullmatch(r"(?:continue|go on|carry on|продолжай|продолжи|дальше|давай)[.!?\s]*", text):
+        return True
+    if re.fullmatch(r"(?:(?:the\s+)?(?:first|second|third|last|previous)(?:\s+one)?|(?:давай\s+)?(?:первый|второй|третий|последний|предыдущий)(?:\s+вариант)?)[.!?\s]*", text):
         return True
     if re.match(r"^(?:use|choose|pick|выбери|используй|возьми)\s+(?:the\s+)?(?:first|second|third|last|previous|первый|второй|третий|последний|предыдущий)(?:\s+one|\s+вариант)?[.!?\s]*$", text):
         return True
