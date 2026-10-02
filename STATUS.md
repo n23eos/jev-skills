@@ -1,11 +1,13 @@
 # Status
 
-Current work, 2026-10-02: user authorized all researched skills, verification, push and deployment. Version 0.3.0 locally verified under specs/004-user-decision-workflows.
+Current work, 2026-10-02: user authorized all researched skills, verification, push and deployment. Version 0.3.0 published and verified under specs/004-user-decision-workflows.
 Goal: useful bounded decisions with concrete evidence and next actions; preserve advisory, opt-in and fail-open boundaries.
 Result: seven new structured workflows, fourteen installable skills, packaged public examples, exact local source/value checks, growing-bundle upgrades, first-use diagnostics and comparison preparation. Previous first-use work retained.
 Checks: 141 offline tests pass on Python 3.10 and 3.14; fourteen skill validators pass; wheel and source distribution build; isolated installed wheel on Python 3.10 passes both host destinations, idempotence, doctor and all seven offline example previews. Independent review found and fixed preview/live payload mismatch and missing-owned-file upgrade diagnostics. Semantic Jev effectiveness remains unmeasured.
 Deployment: existing GitHub source distribution and v0.3.0 release, followed by isolated public install and CI verification. No server application or paid provider evaluation is implied.
-Next: push checked changes, confirm CI, publish v0.3.0 and verify isolated public installation.
+Publication: implementation commit 4cb8ab4 pushed to main; tag and GitHub release v0.3.0 published with wheel and source distribution. CI run 36997359878 passed on Python 3.10 and 3.13. Fresh isolated public GitHub install fetched that commit and passed both fourteen-skill destinations, idempotence and all seven packaged previews.
+Blockers: none for implementation/publication. Real-task decision benefits and native host discovery remain unmeasured.
+Next: collect opt-in real-user feedback and paired task outcomes before changing automatic defaults or claiming improvements.
 
 ## Previous local first-use result
 

@@ -14,4 +14,10 @@
 
 These checks establish implementation behavior, not semantic Jev accuracy, demand, task completion improvement, speed or savings. No new paid provider or host-helper evaluation was run. Host login and native skill discovery were not tested. Public example inputs are fictional and are not production benchmarks. The existing picker comparison prepares paired captures but does not launch agents or manufacture missing measurements.
 
-Publication and isolated GitHub installation are pending at the time of this local verification record. Deployment for this repository means its GitHub source distribution/release; there is no server application.
+## Published verification, 2026-10-02
+
+Implementation commit `4cb8ab4ec3c7fa3821dbd2b398b490a083b1b034` was pushed to main and tagged v0.3.0. [GitHub CI](https://github.com/n23eos/jev-skills/actions/runs/36997359878) passed on Python 3.10 and 3.13, including installed CLI examples and both host destinations.
+
+The exact README GitHub install command fetched that public commit into a fresh isolated uv tool/cache environment. It installed version 0.3.0, both fourteen-skill destinations, repeated installs unchanged, and previewed all seven packaged examples offline from outside the checkout.
+
+[Release v0.3.0](https://github.com/n23eos/jev-skills/releases/tag/v0.3.0) publishes the source distribution and Python wheel. Deployment for this repository means this source distribution/release; there is no server application.
